@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.jets.mad.itischeduleapp.AppController;
 import com.jets.mad.itischeduleapp.UI.Application.MyApplication;
 
 /**
@@ -13,7 +14,7 @@ import com.jets.mad.itischeduleapp.UI.Application.MyApplication;
 public class NetworkUtils {
 
     private ConnectivityManager connectivityManager;
-    private MyApplication myApplication;
+    private AppController myApplication;
     private static NetworkUtils networkUtils;
     public static synchronized NetworkUtils getInstance(){
         if (networkUtils == null){
@@ -23,7 +24,7 @@ public class NetworkUtils {
     }
 
     public NetworkUtils() {
-        myApplication = new MyApplication();
+        myApplication = AppController.getInstance();
     }
 
     public boolean isConnected(){
