@@ -5,7 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.jets.mad.itischeduleapp.UI.Application.MyApplication;
+import com.jets.mad.itischeduleapp.AppController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class DataBaseManager extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
     private DataBaseManager() {
-        super(new MyApplication(), DATABASE_NAME, null, DATABASE_VERSION);
+        super(AppController.getInstance(), DATABASE_NAME, null, DATABASE_VERSION);
         dbTables = new ArrayList<>();
     }
 

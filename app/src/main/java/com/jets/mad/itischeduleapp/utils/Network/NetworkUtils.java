@@ -1,11 +1,10 @@
-package com.jets.mad.itischeduleapp.utils;
+package com.jets.mad.itischeduleapp.utils.Network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.jets.mad.itischeduleapp.AppController;
-import com.jets.mad.itischeduleapp.UI.Application.MyApplication;
 
 /**
  * Created by ehabm on 5/13/2017.

@@ -29,7 +29,7 @@ public class VolleyRequestSingleton {
         return volleyRequestInstance;
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (requestQueue == null){
 
                 /*applicationContext : to ensure that the RequestQueue will last for the lifetime of the app

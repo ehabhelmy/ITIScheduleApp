@@ -1,5 +1,7 @@
 package com.jets.mad.itischeduleapp.datalayer.Network;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -14,10 +16,34 @@ import java.util.Map;
 
 public class NetworkHandler {
 
-    public static void callWebServiceUsingGET(String url, final NetworkCallback networkCallback) {
+    public static void callWebService(String url, int method, final Map<String, String> params, final NetworkCallback networkCallback) {
+        switch (method) {
+
+            case Request.Method.POST:
+                callWebServiceUsingPOST(url, params, networkCallback);
+                break;
+
+            default:
+                callWebServiceUsingGET(url, params, networkCallback);
+                break;
+        }
+    }
+
+    /*========================================== HELPFUL METHODS ===============================================*/
+
+    /***
+     * Method for GET requests
+     ***/
+    private static void callWebServiceUsingGET(String url, final Map<String, String> params, final NetworkCallback networkCallback) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(url+"?");
+        for(String key : params.keySet()){
+            stringBuilder.append(key+"="+params.get(key)+"&");
+        }
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, stringBuilder.toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -37,8 +63,10 @@ public class NetworkHandler {
         VolleyRequestSingleton.getInstance().addToRequestQueue(stringRequest);
     }
 
-
-    public static void callWebServiceUsingPOST(String url, final Map<String, String> params, final NetworkCallback networkCallback) {
+    /***
+     * Method for POST requests
+     ***/
+    private static void callWebServiceUsingPOST(String url, final Map<String, String> params, final NetworkCallback networkCallback) {
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -63,6 +91,7 @@ public class NetworkHandler {
         // Add the request to the RequestQueue.
         VolleyRequestSingleton.getInstance().addToRequestQueue(stringRequest);
     }
+
 
 
 }

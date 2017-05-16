@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkCallback;
@@ -36,29 +37,29 @@ public class TestActivtiy extends AppCompatActivity {
 
         Map<String, String> params= new HashMap<>();
         params.put("name", "Toky");
-        NetworkHandler.callWebServiceUsingPOST("http://putsreq.com/J54KcEXYY1eeoK9jcs8K", params, new NetworkCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.i("Tag", response);
-            }
-
-            @Override
-            public void onError(VolleyError volleyError) {
-                Log.i("Tag", "post " + volleyError.toString());
-            }
-        });
-
-        NetworkHandler.callWebServiceUsingGET("http://httpbin.org/get", new NetworkCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.i("Tag", response);
-            }
-
-            @Override
-            public void onError(VolleyError volleyError) {
-                Log.i("Tag", "get " + volleyError.toString());
-            }
-        });
+//        NetworkHandler.callWebServiceUsingPOST("http://putsreq.com/J54KcEXYY1eeoK9jcs8K", Request.Method.GET, params, new NetworkCallback() {
+//            @Override
+//            public void onSuccess(String response) {
+//                Log.i("Tag", response);
+//            }
+//
+//            @Override
+//            public void onError(VolleyError volleyError) {
+//                Log.i("Tag", "post " + volleyError.toString());
+//            }
+//        });
+//
+//        NetworkHandler.callWebServiceUsingGET("http://httpbin.org/get", new NetworkCallback() {
+//            @Override
+//            public void onSuccess(String response) {
+//                Log.i("Tag", response);
+//            }
+//
+//            @Override
+//            public void onError(VolleyError volleyError) {
+//                Log.i("Tag", "get " + volleyError.toString());
+//            }
+//        });
     }
 
 }
