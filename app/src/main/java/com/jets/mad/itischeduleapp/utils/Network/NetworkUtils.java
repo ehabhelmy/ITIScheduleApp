@@ -3,6 +3,7 @@ package com.jets.mad.itischeduleapp.utils.Network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.StringDef;
 
 import com.jets.mad.itischeduleapp.AppController;
 
@@ -12,28 +13,16 @@ import com.jets.mad.itischeduleapp.AppController;
 
 public class NetworkUtils {
 
-    private ConnectivityManager connectivityManager;
-    private AppController myApplication;
-    private static NetworkUtils networkUtils;
-    public static synchronized NetworkUtils getInstance(){
-        if (networkUtils == null){
-            networkUtils = new NetworkUtils();
-        }
-        return networkUtils;
-    }
+    private static ConnectivityManager connectivityManager;
 
-    public NetworkUtils() {
-        myApplication = AppController.getInstance();
-    }
-
-    public boolean isConnected(){
-        connectivityManager = (ConnectivityManager) myApplication.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isConnected(){
+        connectivityManager = (ConnectivityManager) AppController.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo.isConnectedOrConnecting() && networkInfo != null;
     }
 
-    public String connectionType(){
-        connectivityManager = (ConnectivityManager) myApplication.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static String connectionType(){
+        connectivityManager = (ConnectivityManager) AppController.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI){
             return "wifi";

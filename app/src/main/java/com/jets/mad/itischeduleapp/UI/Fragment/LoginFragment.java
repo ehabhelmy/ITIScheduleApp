@@ -1,21 +1,31 @@
 package com.jets.mad.itischeduleapp.UI.Fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.jets.mad.itischeduleapp.R;
-import com.jets.mad.itischeduleapp.UI.Contracts.LoginFragmentContract;
+import com.jets.mad.itischeduleapp.UI.Presenter.Interface.ILogin;
+import com.jets.mad.itischeduleapp.UI.UIContracts.ILoginFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements LoginFragmentContract {
+public class LoginFragment extends Fragment implements ILoginFragment.ILoginUIFragment {
 
+    private ILogin.ILoginUIActivity iLoginActivity;
+    //UI References
     private View rootView;
+    AutoCompleteTextView userID;
+    EditText password;
+    Button loginBtn;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -27,18 +37,33 @@ public class LoginFragment extends Fragment implements LoginFragmentContract {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        userID = (AutoCompleteTextView) rootView.findViewById(R.id.email);
+        password = (EditText) rootView.findViewById(R.id.password);
+        loginBtn = (Button) rootView.findViewById(R.id.login_btn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iLoginActivity.login();
+            }
+        });
+
         return rootView;
     }
 
-    /*============================= LoginFragmentContract Methods ==============================*/
     @Override
-    public String getUsername() {
-        return null;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        iLoginActivity = (ILogin.ILoginUIActivity) context;
+
     }
+    /*============================= ILoginFragment Methods ==============================*/
+    @Override
+    public String getUsername() { return userID.getText().toString();  }
 
     @Override
     public String getPassword() {
-        return null;
+        return password.getText().toString();
     }
 
     @Override

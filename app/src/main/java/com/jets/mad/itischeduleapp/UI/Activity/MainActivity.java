@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkCallback;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkHandler;
+import com.jets.mad.itischeduleapp.utils.Network.NetworkMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,18 +24,18 @@ public class MainActivity extends AppCompatActivity {
         params.put("name", "Toky");
 
 
-//        NetworkHandler.callWebService("http://httpbin.org/get",Request.Method.GET,  params, new NetworkCallback() {
-//            @Override
-//            public void onSuccess(String response) {
-//                Log.i("Tag", response);
-//            }
-//
-//            @Override
-//            public void onError(VolleyError volleyError) {
-//                Log.i("Tag", "get " + volleyError.toString());
-//            }
-//        });
-        NetworkHandler.callWebService("http://putsreq.com/J54KcEXYY1eeoK9jcs8K",Request.Method.POST,  params, new NetworkCallback() {
+        NetworkHandler.callWebService("http://httpbin.org/get", NetworkMethod.GET,  params, new NetworkCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.i("Tag", response);
+            }
+
+            @Override
+            public void onError(VolleyError volleyError) {
+                Log.i("Tag", "get " + volleyError.toString());
+            }
+        });
+        NetworkHandler.callWebService("http://putsreq.com/J54KcEXYY1eeoK9jcs8K", NetworkMethod.POST,  params, new NetworkCallback() {
             @Override
             public void onSuccess(String response) {
                 Log.i("Tag", response);

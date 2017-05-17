@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.jets.mad.itischeduleapp.utils.Network.NetworkMethod;
 
 import java.util.Map;
 
@@ -16,10 +17,12 @@ import java.util.Map;
 
 public class NetworkHandler {
 
-    public static void callWebService(String url, int method, final Map<String, String> params, final NetworkCallback networkCallback) {
+    public static void callWebService(String url, @NetworkMethod int method, final Map<String, String> params, final NetworkCallback networkCallback) {
+        Log.i("TAG", "callWebService: "+method);
         switch (method) {
 
             case Request.Method.POST:
+                Log.i("TAG", "callWebService: post");
                 callWebServiceUsingPOST(url, params, networkCallback);
                 break;
 
@@ -73,13 +76,14 @@ public class NetworkHandler {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        Log.i("TAG", "onResponse: " + response);
                         networkCallback.onSuccess(response);
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.i("TAG", "onErrorResponse: " + error.toString());
                 networkCallback.onError(error);
             }
         }){
