@@ -23,7 +23,7 @@ public class LoginFragment extends Fragment implements ILoginFragment.ILoginUIFr
     private ILogin.ILoginUIActivity iLoginActivity;
     //UI References
     private View rootView;
-    AutoCompleteTextView userID;
+    EditText userID;
     EditText password;
     Button loginBtn;
 
@@ -37,7 +37,7 @@ public class LoginFragment extends Fragment implements ILoginFragment.ILoginUIFr
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_login, container, false);
-        userID = (AutoCompleteTextView) rootView.findViewById(R.id.email);
+        userID = (EditText) rootView.findViewById(R.id.email);
         password = (EditText) rootView.findViewById(R.id.password);
         loginBtn = (Button) rootView.findViewById(R.id.login_btn);
 

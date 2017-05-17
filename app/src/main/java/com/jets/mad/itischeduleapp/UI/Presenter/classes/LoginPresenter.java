@@ -9,8 +9,6 @@ import com.jets.mad.itischeduleapp.datalayer.Network.NetworkHandler;
 import com.jets.mad.itischeduleapp.utils.Network.NetworkMethod;
 import com.jets.mad.itischeduleapp.utils.Network.NetworkUtils;
 import com.jets.mad.itischeduleapp.utils.Network.URLS;
-import com.jets.mad.itischeduleapp.utils.SharedPref;
-import com.jets.mad.itischeduleapp.utils.ValidationUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,26 +30,22 @@ public class LoginPresenter implements ILogin.ILoginPresenter, NetworkCallback{
     public void login(String username, String password) {
         Log.i("TAG", "login");
         //1. client validation
-        //if(!ValidationUtils.validateEmail(username)){
-            if(NetworkUtils.isConnected()){
-                Log.i("TAG", "login: connected");
-                Map<String, String> params = new HashMap<>();
-//                params.put("username", username);
-//                params.put("password", password);
-                params.put("name", username);
-                NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethod.POST, params, this);
-            }else{
-                Log.i("TAG", "login: notconnected");
-            }
-
-//        }else{
-//            Log.i("TAG", "login: notvalid");
-//        }
+        if(NetworkUtils.isConnected()){
+            Log.i("TAG", "login: connected");
+            Map<String, String> params = new HashMap<>();
+//          params.put("username", username);
+//          params.put("password", password);
+            params.put("name", username);
+            NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethod.POST, params, this);
+        }else{
+             Log.i("TAG", "login: notconnected");
+        }
 
     }
     /*============================= NetworkCallBack Interface ====================*/
     @Override
     public void onSuccess(String response) {
+
         //1. save into shared pref
         //SharedPref.saveString("userToken", response);    //TODO: add user token from response
         Log.i("TAG", "onSuccess: "+response);

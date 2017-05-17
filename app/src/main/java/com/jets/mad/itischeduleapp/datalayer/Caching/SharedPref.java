@@ -1,4 +1,4 @@
-package com.jets.mad.itischeduleapp.utils;
+package com.jets.mad.itischeduleapp.datalayer.Caching;
 
 import android.content.Context;
 import android.content.SharedPreferences;
