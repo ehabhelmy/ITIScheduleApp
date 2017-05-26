@@ -38,7 +38,7 @@ public abstract class AbstractTable<T extends BaseModel> {
                cursor.moveToNext();
            }
         }
-        if (cursor == null){
+        if (cursor != null){
             cursor.close();
         }
         return items;

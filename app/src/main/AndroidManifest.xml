@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jets.mad.itischeduleapp">
 
+    <!--======================== PERMISSIONS ==================================-->
+        <!-- Toqa -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <!-- End of Toqa -->
+
+        <!-- Ehab -->
+
+        <!-- End of Ehab -->
+    <!--=== End of Permissions ===-->
 
     <application
         android:name=".AppController"
@@ -12,15 +20,42 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".UI.Activity.LoginActivity">
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <!--======================== ACTIVITIES ==================================-->
+            <!--*** SplashScreen Activity *** -->
+        <activity android:name=".UI.Activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.Activity.HomeActivity"></activity>
+            <!--*** End of SplashScreen *** -->
+
+            <!--*** Login Activity *** -->
+        <activity android:name=".UI.Activity.LoginActivity">
+
+        </activity>
+            <!--*** End of Login *** -->
+
+            <!--*** End of Home Activiy *** -->
+        <activity android:name=".UI.Activity.HomeActivity" />
+            <!--*** End of Home *** -->
+
+        <!--=== End of Activities ===-->
+
+        <!--======================== SERVICES ==================================-->
+        <service
+            android:name=".datalayer.Services.Token.TokenService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
+
+        <service
+            android:name=".datalayer.Services.Token.TokenServiceSupport"/>
+
+        <!--=== End of Services ===-->
+
     </application>
 
 </manifest>

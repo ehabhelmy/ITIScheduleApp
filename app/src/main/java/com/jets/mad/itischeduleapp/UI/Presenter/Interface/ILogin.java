@@ -1,27 +1,20 @@
 package com.jets.mad.itischeduleapp.UI.Presenter.Interface;
 
-/**
- * Created by lenovo on 5/16/2017.
- */
-
-
-/***
- * inter*/
 public interface ILogin {
 
     /***
-     * interface used to communication with activity ()
+     * interface used to communication with activity
      ***/
-    interface ILoginActivity{
+    interface ILoginFragment{
         public void loginSucceded();
-        public void loginFailed();
+        public void loginFailed(String title, String msg);
     }
 
     /***
      * interface used to communicate with login activity (UI functionality only)
      ***/
-    interface ILoginUIActivity{
-        public void login();
+    interface ILoginActivity{
+        public void goToNextActivity();
     }
 
     /***

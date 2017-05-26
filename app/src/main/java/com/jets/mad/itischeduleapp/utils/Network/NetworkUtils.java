@@ -7,9 +7,6 @@ import android.support.annotation.StringDef;
 
 import com.jets.mad.itischeduleapp.AppController;
 
-/**
- * Created by ehabm on 5/13/2017.
- */
 
 public class NetworkUtils {
 

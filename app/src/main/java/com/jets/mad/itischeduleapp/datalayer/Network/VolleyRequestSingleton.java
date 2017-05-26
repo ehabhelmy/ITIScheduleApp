@@ -1,17 +1,9 @@
 package com.jets.mad.itischeduleapp.datalayer.Network;
 
-import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.jets.mad.itischeduleapp.AppController;
-
-/**
- * Created by lenovo on 5/15/2017.
- */
-
-
 
 public class VolleyRequestSingleton {
 

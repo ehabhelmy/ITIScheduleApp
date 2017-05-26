@@ -4,9 +4,6 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
-/**
- * Created by lenovo on 5/15/2017.
- */
 
 public class AppController extends Application {
 
