@@ -26,5 +26,8 @@ public class LoginActivity extends AppCompatActivity implements ILogin.ILoginAct
     public void goToNextActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+
+        //close login activity
+        finish();
     }
 }

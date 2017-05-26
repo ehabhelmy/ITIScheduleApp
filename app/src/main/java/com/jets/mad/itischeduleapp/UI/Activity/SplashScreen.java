@@ -9,7 +9,7 @@ import android.util.Log;
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.ISplash;
 import com.jets.mad.itischeduleapp.UI.Presenter.classes.SplashScreenPresenter;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityName;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityNamee;
 
 public class SplashScreen extends AppCompatActivity implements ISplash.ISplashActivity {
 
@@ -27,10 +27,10 @@ public class SplashScreen extends AppCompatActivity implements ISplash.ISplashAc
     }
     /*============================== ISplash.ISplashActivity Interface Methods =====================================*/
     @Override
-    public void goToNextActivity(@ActivityName int nextActivityName) {
+    public void goToNextActivity(ActivityNamee nextActivityName) {
         Intent intent;
         switch (nextActivityName) {
-            case ActivityName.HOME:
+            case HOME:
                 intent = new Intent(SplashScreen.this, HomeActivity.class);
                 Log.i("TAG", "SplashScreen.java goToNextActivity: HomeActivity");
                 startActivity(intent);
@@ -41,6 +41,9 @@ public class SplashScreen extends AppCompatActivity implements ISplash.ISplashAc
                 startActivity(intent);
 
         }
+
+        //close splashscreen
+        finish();
 
     }
 

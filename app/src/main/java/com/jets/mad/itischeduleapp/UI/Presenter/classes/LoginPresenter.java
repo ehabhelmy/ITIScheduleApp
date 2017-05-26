@@ -8,9 +8,9 @@ import com.jets.mad.itischeduleapp.datalayer.Caching.Files.InternalFile;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkCallback;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkHandler;
 import com.jets.mad.itischeduleapp.datalayer.Services.Token.TokenServiceHandler;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkMethod;
 import com.jets.mad.itischeduleapp.utils.Network.NetworkUtils;
 import com.jets.mad.itischeduleapp.utils.Network.URLS;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkMethods;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class LoginPresenter implements ILogin.ILoginPresenter, NetworkCallback{
             Map<String, String> params = new HashMap<>();
             params.put("j_username", username);
             params.put("j_password", password);
-            NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethod.POST, params, this);
+            NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethods.POST, params, this);
         }else{
             loginFragment.loginFailed("Login Error", "Connection Error. Please check your network connection.");
         }

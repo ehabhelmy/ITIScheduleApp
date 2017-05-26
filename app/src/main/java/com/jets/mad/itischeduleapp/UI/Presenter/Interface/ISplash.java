@@ -1,7 +1,7 @@
 package com.jets.mad.itischeduleapp.UI.Presenter.Interface;
 
 import com.jets.mad.itischeduleapp.UI.Activity.SplashScreen;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityName;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityNamee;
 
 public interface ISplash {
 
@@ -9,7 +9,7 @@ public interface ISplash {
      * interface used to communication with splash activity
      ***/
     public interface ISplashActivity {
-        public void goToNextActivity(@ActivityName int nextActivityName);
+        public void goToNextActivity(ActivityNamee nextActivityName);
     }
 
 

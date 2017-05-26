@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.StringDef;
 
 import com.jets.mad.itischeduleapp.AppController;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkTypes;
 
 
 public class NetworkUtils {
@@ -18,17 +19,17 @@ public class NetworkUtils {
         return networkInfo.isConnectedOrConnecting() && networkInfo != null;
     }
 
-    public static String connectionType(){
+    public static NetworkTypes connectionType(){
         connectivityManager = (ConnectivityManager) AppController.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI){
-            return "wifi";
+            return NetworkTypes.Wifi;
         }
         else if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_MOBILE){
-            return "3G";
+            return NetworkTypes.Three_G;
         }
         else{
-            return "not connected";
+            return NetworkTypes.NotConnected;
         }
     }
 }
