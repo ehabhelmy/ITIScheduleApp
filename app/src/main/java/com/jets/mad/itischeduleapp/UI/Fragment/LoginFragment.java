@@ -80,7 +80,8 @@ public class LoginFragment extends Fragment implements ILogin.ILoginFragment {
 
         progressBar.setVisibility(View.VISIBLE);
         //pass these params to presenter
-        iLoginPresenter.login(username, userPass);
+        //iLoginPresenter.login(username, userPass);
+        loginSucceded();
 
     }
     /*========================= ILoginFragment Contract =========================*/
