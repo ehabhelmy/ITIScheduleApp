@@ -1,6 +1,7 @@
 package com.jets.mad.itischeduleapp.UI.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,7 +30,7 @@ public class LoginFragment extends Fragment implements ILogin.ILoginFragment {
     private EditText userID;
     private EditText password;
     private Button loginBtn;
-    private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -52,12 +53,18 @@ public class LoginFragment extends Fragment implements ILogin.ILoginFragment {
 
         userID = (EditText) rootView.findViewById(R.id.email);
         password = (EditText) rootView.findViewById(R.id.password);
-        progressBar = (ProgressBar) rootView.findViewById(R.id.login_progress);
+        progressDialog= new ProgressDialog(getActivity(),
+                R.style.Theme_AppCompat_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+
+
         loginBtn = (Button) rootView.findViewById(R.id.login_btn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 sendDataToPresenter();
             }
         });
@@ -78,7 +85,6 @@ public class LoginFragment extends Fragment implements ILogin.ILoginFragment {
         String username = userID.getText().toString();
         String userPass = password.getText().toString();
 
-        progressBar.setVisibility(View.VISIBLE);
         //pass these params to presenter
         //iLoginPresenter.login(username, userPass);
         loginSucceded();
@@ -89,13 +95,13 @@ public class LoginFragment extends Fragment implements ILogin.ILoginFragment {
     public void loginSucceded() {
 
         iLoginActivity.goToNextActivity();
-        progressBar.setVisibility(View.GONE);
+        progressDialog.dismiss();
     }
 
     @Override
     public void loginFailed(String title, String msg) {
 
-        progressBar.setVisibility(View.GONE);
+        progressDialog.dismiss();
         Alert.showErrorMsg(title, msg, getContext());
 
     }

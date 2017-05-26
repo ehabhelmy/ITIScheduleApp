@@ -10,7 +10,7 @@ import com.jets.mad.itischeduleapp.datalayer.Caching.Files.InternalFile;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkCallback;
 import com.jets.mad.itischeduleapp.datalayer.Network.NetworkHandler;
 import com.jets.mad.itischeduleapp.utils.Network.URLS;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkMethod;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkMethods;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class TokenService extends JobService {
         /*bodyParams.put("j_username", username);
         bodyParams.put("j_password", password);
         */
-        NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethod.POST, bodyParams, new NetworkCallback() {
+        NetworkHandler.callWebService(URLS.LOGIN_URL, NetworkMethods.POST, bodyParams, new NetworkCallback() {
             @Override
             public void onSuccess(String response) {
                 //TODO : get token from response

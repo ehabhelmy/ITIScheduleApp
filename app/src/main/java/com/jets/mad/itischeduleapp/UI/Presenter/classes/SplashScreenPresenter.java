@@ -3,7 +3,7 @@ package com.jets.mad.itischeduleapp.UI.Presenter.classes;
 import com.jets.mad.itischeduleapp.UI.Activity.SplashScreen;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.ISplash;
 import com.jets.mad.itischeduleapp.datalayer.Caching.Files.InternalFile;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityName;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.ActivityNamee;
 
 public class SplashScreenPresenter implements ISplash.ISplashPresenter {
 
@@ -22,9 +22,9 @@ public class SplashScreenPresenter implements ISplash.ISplashPresenter {
 
         InternalFile internalFile = new InternalFile();
         if(internalFile.readFromFile() == null){
-            splashActivity.goToNextActivity(ActivityName.LOGIN);
+            splashActivity.goToNextActivity(ActivityNamee.LOGIN);
         }else{
-            splashActivity.goToNextActivity(ActivityName.HOME);
+            splashActivity.goToNextActivity(ActivityNamee.HOME);
         }
     }
 
