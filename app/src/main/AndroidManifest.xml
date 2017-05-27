@@ -25,11 +25,11 @@
         <!--======================== ACTIVITIES ==================================-->
             <!--*** SplashScreen Activity *** -->
         <activity android:name=".UI.Activity.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
             <!--*** End of SplashScreen *** -->
 
@@ -40,7 +40,13 @@
             <!--*** End of Login *** -->
 
             <!--*** End of Home Activiy *** -->
-        <activity android:name=".UI.Activity.HomeActivity" />
+        <activity android:name=".UI.Activity.HomeActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
             <!--*** End of Home *** -->
 
         <!--=== End of Activities ===-->

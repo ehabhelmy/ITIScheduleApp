@@ -30,11 +30,12 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
     public ScreenSlidePagerAdapter(FragmentManager fm, Bundle save) {
         super(fm);
         this.saved = save;
+
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0 ){
+        if (position == 2 ){
             if (saved==null){
                 monthFragment = new MonthFragment();
                 Bundle args = new Bundle();
@@ -62,11 +63,5 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return 3;
     }
-
-
-
-
-
-
 
 }
