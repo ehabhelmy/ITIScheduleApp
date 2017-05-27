@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/day_card"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    card_view:cardElevation="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:id="@+id/day_card_color"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/day_start_time"
+                android:layout_width="62dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="12 A.m."
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/caldroid_darker_gray"
+                card_view:layout_constraintBottom_toTopOf="@+id/day_end_time"
+                card_view:layout_constraintHorizontal_bias="0.02"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toLeftOf="@+id/day_event_name"
+                card_view:layout_constraintTop_toBottomOf="@+id/day_start_time"
+                card_view:layout_constraintVertical_bias="0.612" />
+
+            <TextView
+                android:id="@+id/day_end_time"
+                android:layout_width="62dp"
+                android:layout_height="26dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="-18dp"
+                android:gravity="center"
+                android:text="1 A.m."
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintHorizontal_bias="0.0"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toLeftOf="@+id/day_event_name"
+                card_view:layout_constraintTop_toBottomOf="@+id/day_start_time"
+                card_view:layout_constraintVertical_bias="0.97" />
+
+            <TextView
+                android:id="@+id/day_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-31dp"
+                android:layout_marginRight="16dp"
+                android:text="Study Android"
+                android:textSize="20sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                card_view:srcCompat="@mipmap/ic_access_time_black_24dp"
+                android:layout_marginLeft="0dp"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="0dp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                card_view:srcCompat="@mipmap/ic_access_time_black_24dp"
+                android:layout_marginLeft="0dp"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="0dp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
