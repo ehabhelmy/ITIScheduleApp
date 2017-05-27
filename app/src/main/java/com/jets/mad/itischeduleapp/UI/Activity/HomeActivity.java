@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
-        screenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),savedInstanceState);
+        screenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),savedInstanceState,this);
         viewPager.setAdapter(screenSlidePagerAdapter);
     }
 }

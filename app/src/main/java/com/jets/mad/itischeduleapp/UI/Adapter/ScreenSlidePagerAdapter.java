@@ -9,12 +9,15 @@ import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.UI.Fragment.DayFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.WeekFragment;
+import com.roomorama.caldroid.CaldroidListener;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by ehabm on 5/26/2017.
@@ -26,10 +29,12 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     private Bundle saved;
     private MonthFragment monthFragment;
+    private Context context;
 
-    public ScreenSlidePagerAdapter(FragmentManager fm, Bundle save) {
+    public ScreenSlidePagerAdapter(FragmentManager fm, Bundle save,Context context) {
         super(fm);
         this.saved = save;
+        this.context = context;
     }
 
     @Override
@@ -44,6 +49,12 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
                 args.putBoolean(monthFragment.ENABLE_SWIPE, true);
                 args.putBoolean(monthFragment.SIX_WEEKS_IN_CALENDAR, false);
                 monthFragment.setArguments(args);
+                monthFragment.setCaldroidListener(new CaldroidListener() {
+                    @Override
+                    public void onSelectDate(Date date, View view) {
+                        Toast.makeText(context,date.toLocaleString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
                 return monthFragment;
             }
             else{
@@ -51,6 +62,7 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
                         "CALDROID_SAVED_STATE");
                 return monthFragment;
             }
+
         }else if (position == 1){
             return new WeekFragment();
         }else{
