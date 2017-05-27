@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity implements IHome.IHomeActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
-        screenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),savedInstanceState);
+        screenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),savedInstanceState,this);
         viewPager.setAdapter(screenSlidePagerAdapter);
 
         homePresenter = new HomePresenter(this);
