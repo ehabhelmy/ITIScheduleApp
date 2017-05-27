@@ -1,6 +1,6 @@
 package com.jets.mad.itischeduleapp.UI.Presenter.Interface;
 
-import com.jets.mad.itischeduleapp.UI.Adapter.DayList.DayRecyclerViewAdapter;
+import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseRecyclerViewAdapter;
 import com.jets.mad.itischeduleapp.datalayer.Models.Events;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public interface IHome {
     interface IHomePresenter{
 
         public void prepareDayAdapter(ArrayList<Events> events);
-        public DayRecyclerViewAdapter getDayAdapter();
+        public BaseRecyclerViewAdapter getAdapter();
 
     }
 
@@ -28,7 +28,7 @@ public interface IHome {
      * its functions are UI related
      ***/
     interface IHomeActivityUI{
-        public DayRecyclerViewAdapter getDayAdapter();
+        public BaseRecyclerViewAdapter getAdapter();
     }
 
 }
