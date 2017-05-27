@@ -7,11 +7,11 @@ import com.jets.mad.itischeduleapp.datalayer.Models.BaseModel;
 
 import java.util.ArrayList;
 
-public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder>{
+public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>{
 
-    ArrayList<? extends BaseModel> data;
+    ArrayList<T> data;
 
-    public BaseRecyclerViewAdapter(ArrayList<? extends BaseModel> data){
+    public BaseRecyclerViewAdapter(ArrayList<T> data){
         this.data = data;
     }
 

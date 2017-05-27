@@ -6,7 +6,7 @@ import android.view.View;
 import com.jets.mad.itischeduleapp.datalayer.Models.BaseModel;
 
 
-public abstract class BaseViewHolder<T extends BaseModel> extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView) {
         super(itemView);
