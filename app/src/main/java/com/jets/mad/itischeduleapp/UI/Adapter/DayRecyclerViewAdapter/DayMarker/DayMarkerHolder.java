@@ -1,15 +1,12 @@
 package com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseViewHolder;
 
-import java.util.Date;
-
-public class DayMarkerHolder extends BaseViewHolder<Date> {
+public class DayMarkerHolder extends BaseViewHolder<String> {
 
     private TextView day;
 
@@ -20,10 +17,9 @@ public class DayMarkerHolder extends BaseViewHolder<Date> {
     }
 
     @Override
-    public void configure(Date baseModel) {
-        Log.i("TAG", "DayMarkerHolder : configure: " + String.valueOf(baseModel.getDay()));
-        day.setText(String.valueOf(baseModel.getDay()));
+    public void configure(String baseModel) {
+        day.setText(baseModel);
+
+
     }
-
-
 }

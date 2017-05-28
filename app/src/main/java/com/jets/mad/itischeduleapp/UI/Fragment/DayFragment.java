@@ -9,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Activity.HomeActivity;
+import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.onItemClick;
 import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker.DayMarkerRecyclerAdapter;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
 
@@ -50,16 +52,21 @@ public class DayFragment extends Fragment{
         LinearLayoutManager markerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         dayMarker.setLayoutManager(markerLayoutManager);
 
-        ArrayList<Date> dateArrayList = new ArrayList<>();
-        dateArrayList.add(new Date(2015, 20,9));
-        dateArrayList.add(new Date(2015, 20,10));
-        dateArrayList.add(new Date(2015, 20,11));
-        dateArrayList.add(new Date(2015, 20,12));
-        dateArrayList.add(new Date(2015, 20,13));
-        dateArrayList.add(new Date(2015, 20,14));
-        dateArrayList.add(new Date(2015, 20,15));
+        ArrayList<String> dateArrayList = new ArrayList<>();
+        dateArrayList.add("Tues 29");
+        dateArrayList.add("Wed 30");
+        dateArrayList.add("Thur 31");
+        dateArrayList.add("Fri 1");
+        dateArrayList.add("Sat 2");
+        dateArrayList.add("Sun 3");
+        dateArrayList.add("Mon 4");
 
-        dayMarker.setAdapter(new DayMarkerRecyclerAdapter(dateArrayList, R.layout.cell_day_marker));
+        dayMarker.setAdapter(new DayMarkerRecyclerAdapter(dateArrayList, R.layout.cell_day_marker, new onItemClick() {
+            @Override
+            public void onItemClick(ArrayList data, int position) {
+                Toast.makeText(getActivity(), "" + data.get(position), Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         return rootView;
     }
