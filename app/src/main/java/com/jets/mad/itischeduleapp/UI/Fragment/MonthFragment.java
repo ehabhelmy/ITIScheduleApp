@@ -4,11 +4,14 @@ package com.jets.mad.itischeduleapp.UI.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.CalendarAdapter;
+import com.jets.mad.itischeduleapp.UI.Adapter.SwipeDetector.OnFlingGestureListener;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidGridAdapter;
 
