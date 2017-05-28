@@ -4,17 +4,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseRecyclerViewAdapter;
-import com.jets.mad.itischeduleapp.UI.Adapter.SwipeDetector.OnFlingGestureListener;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
 import com.jets.mad.itischeduleapp.UI.Presenter.classes.HomePresenter;
@@ -49,26 +45,26 @@ public class HomeActivity extends AppCompatActivity implements IHome.IHomeActivi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        gestureDetector = new GestureDetector(this,new GestureListener());
-        fragmentManager = getSupportFragmentManager();
-        monthFragment = (MonthFragment) fragmentManager.findFragmentById(R.id.month);
-        relativeLayout = (RelativeLayout) findViewById(R.id.draggable);
-        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                System.out.println("ana edst");
-                Log.i("SW","touched");
-                //return gestureDetector.onTouchEvent(event);
-                return true;
-            }
-        });
+//        gestureDetector = new GestureDetector(this,new GestureListener());
+//        fragmentManager = getSupportFragmentManager();
+//        monthFragment = (MonthFragment) fragmentManager.findFragmentById(R.id.month);
+//        relativeLayout = (RelativeLayout) findViewById(R.id.draggable);
+//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                System.out.println("ana edst");
+//                Log.i("SW","touched");
+//                //return gestureDetector.onTouchEvent(event);
+//                return true;
+//            }
+//        });
         homePresenter = new HomePresenter(this);
     }
 
     @Override
-    public BaseRecyclerViewAdapter getAdapter() {
+    public BaseRecyclerViewAdapter getAdapter(int flag) {
         //TODO: get the data of the three fragments from network then distribute the data
-        return homePresenter.getAdapter();
+        return homePresenter.getAdapter(flag);
     }
 
 

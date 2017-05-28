@@ -1,4 +1,4 @@
-package com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter;
+package com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayData;
 
 import android.support.v7.widget.CardView;
 import android.view.View;
