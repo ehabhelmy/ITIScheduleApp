@@ -12,6 +12,7 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.jets.mad.itischeduleapp.R;
+import com.jets.mad.itischeduleapp.UI.Adapter.SwipeDetector.OnFlingGestureListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
