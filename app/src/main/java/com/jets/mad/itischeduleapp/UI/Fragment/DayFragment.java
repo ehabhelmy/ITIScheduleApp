@@ -3,6 +3,7 @@ package com.jets.mad.itischeduleapp.UI.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ public class DayFragment extends Fragment{
 
     //UI References
     private RecyclerView recyclerView;
+    private RecyclerView dayMarker;
 
 
     private IHome.IHomeActivityUI homeActivity;
@@ -35,14 +37,26 @@ public class DayFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_day, container, false);
+
         recyclerView = (RecyclerView) rootView.findViewById(R.id.day_list);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLinearLayoutManager);
 
-        recyclerView.setAdapter(homeActivity.getAdapter());
-
+        dayMarker = (RecyclerView) rootView.findViewById(R.id.day_list_marker);
+        LinearLayoutManager markerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        dayMarker.setLayoutManager(markerLayoutManager);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        recyclerView.setAdapter(homeActivity.getAdapter(1));
+        dayMarker.setAdapter(homeActivity.getAdapter(0));
+
+
     }
 
     @Override
@@ -51,6 +65,5 @@ public class DayFragment extends Fragment{
         homeActivity = (HomeActivity) context;
 
     }
-
 
 }

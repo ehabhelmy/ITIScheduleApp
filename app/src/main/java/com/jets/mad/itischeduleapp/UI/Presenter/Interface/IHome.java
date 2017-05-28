@@ -10,7 +10,7 @@ public interface IHome {
     interface IHomePresenter{
 
         public void prepareDayAdapter(ArrayList<Events> events);
-        public BaseRecyclerViewAdapter getAdapter();
+        public BaseRecyclerViewAdapter getAdapter(int flag);
 
     }
 
@@ -28,7 +28,7 @@ public interface IHome {
      * its functions are UI related
      ***/
     interface IHomeActivityUI{
-        public BaseRecyclerViewAdapter getAdapter();
+        public BaseRecyclerViewAdapter getAdapter(int flag);
     }
 
 }
