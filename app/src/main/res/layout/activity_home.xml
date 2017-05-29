@@ -4,33 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="8"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
     android:orientation="vertical"
     tools:context="com.jets.mad.itischeduleapp.UI.Activity.HomeActivity">
-    <!--android:weightSum="8"-->
-    <!--android:clickable="false"-->
-    <!--android:focusable="false"-->
-    <!--android:focusableInTouchMode="false"-->
 
 
+    <LinearLayout
+        android:id="@+id/lout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" >
 
-    <fragment
-        android:id="@+id/month"
-        android:name="com.jets.mad.itischeduleapp.UI.Fragment.DayFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="3"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true" />-->
-    <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="5"-->
-        <!--android:clickable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:focusable="true"-->
-        <!--android:id="@+id/draggable">-->
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:id="@+id/draggable">
 
-    <!--</RelativeLayout>-->
+    </View>
 </LinearLayout>
