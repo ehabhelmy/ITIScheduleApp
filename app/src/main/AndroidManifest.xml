@@ -2,17 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jets.mad.itischeduleapp">
 
-    <!--======================== PERMISSIONS ==================================-->
-        <!-- Toqa -->
+    <!-- ======================== PERMISSIONS ================================== -->
+    <!-- Toqa -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <!-- End of Toqa -->
 
-        <!-- Ehab -->
-
-        <!-- End of Ehab -->
-    <!--=== End of Permissions ===-->
-
+    <!-- End of Toqa -->
+    <!-- Ehab -->
+    <!-- End of Ehab -->
+    <!-- === End of Permissions === -->
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -22,45 +20,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
-        <!--======================== ACTIVITIES ==================================-->
-            <!--*** SplashScreen Activity *** -->
+        <!-- ======================== ACTIVITIES ================================== -->
+        <!-- *** SplashScreen Activity *** -->
         <activity android:name=".UI.Activity.SplashScreen">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-            <!--*** End of SplashScreen *** -->
+        <!-- *** End of SplashScreen *** -->
 
-            <!--*** Login Activity *** -->
-        <activity android:name=".UI.Activity.LoginActivity">
+
+        <!-- *** Login Activity *** -->
+        <activity android:name=".UI.Activity.LoginActivity"></activity>
+        <!-- *** End of Login *** -->
+
+
+        <!-- *** End of Home Activiy *** -->
+        <activity android:name=".UI.Activity.HomeActivity">
 
         </activity>
-            <!--*** End of Login *** -->
+        <!-- *** End of Home *** -->
 
-            <!--*** End of Home Activiy *** -->
-        <activity android:name=".UI.Activity.HomeActivity" >
+        <!-- *** TestActivity ***-->
+        <activity android:name=".UI.Activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <!--*** End of Home *** -->
+        <!-- *** End of Test *** -->
 
-        <!--=== End of Activities ===-->
+        <!-- === End of Activities === -->
 
-        <!--======================== SERVICES ==================================-->
+
+        <!-- ======================== SERVICES ================================== -->
         <service
             android:name=".datalayer.Services.Token.TokenService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"/>
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".datalayer.Services.Token.TokenServiceSupport" />
 
-        <service
-            android:name=".datalayer.Services.Token.TokenServiceSupport"/>
-
-        <!--=== End of Services ===-->
+        <!-- === End of Services === -->
 
     </application>
 
