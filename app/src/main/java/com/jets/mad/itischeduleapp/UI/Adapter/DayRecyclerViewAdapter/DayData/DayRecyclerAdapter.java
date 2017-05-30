@@ -13,8 +13,8 @@ public class DayRecyclerAdapter<Events> extends BaseRecyclerViewAdapter {
 
     private int cellId;
 
-    public DayRecyclerAdapter(ArrayList data, int cellId) {
-        super(data);
+    public DayRecyclerAdapter(int cellId) {
+        super();
         this.cellId = cellId;
     }
 

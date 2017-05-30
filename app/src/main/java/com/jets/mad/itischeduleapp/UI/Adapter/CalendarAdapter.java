@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
 import com.roomorama.caldroid.CaldroidFragment;
@@ -30,8 +31,12 @@ public class CalendarAdapter extends CaldroidGridAdapter {
      * @param caldroidData
      * @param extraData
      */
-    public CalendarAdapter(Context context, int month, int year, Map<String, Object> caldroidData, Map<String, Object> extraData) {
+
+    private OnDayClickListener onDayClickListener;
+
+    public CalendarAdapter(Context context, int month, int year, Map<String, Object> caldroidData, Map<String, Object> extraData, OnDayClickListener onDayClickListener) {
         super(context, month, year, caldroidData, extraData);
+        this.onDayClickListener = onDayClickListener;
     }
 
     @Override
@@ -43,6 +48,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
         // For reuse
         if (convertView == null) {
             cellView = inflater.inflate(R.layout.custom_cell, null);
+
         }
         int topPadding = cellView.getPaddingTop();
         int leftPadding = cellView.getPaddingLeft();
@@ -55,8 +61,16 @@ public class CalendarAdapter extends CaldroidGridAdapter {
         tv1.setTextColor(Color.BLACK);
 
         // Get dateTime of this cell
-        DateTime dateTime = this.datetimeList.get(position);
+        final DateTime dateTime = this.datetimeList.get(position);
         Resources resources = context.getResources();
+
+        cellView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "day "+ dateTime.getDay()+ " clicked", Toast.LENGTH_SHORT).show();
+                onDayClickListener.onDayClick(dateTime);
+            }
+        });
 
         // Set color of the dates in previous / next month
         if (dateTime.getMonth() != month) {

@@ -9,9 +9,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
     protected ArrayList<T> data;
 
-    public BaseRecyclerViewAdapter(ArrayList<T> data){
-        this.data = data;
-
+    public BaseRecyclerViewAdapter(){
     }
 
     @Override
@@ -26,6 +24,11 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+
+    public void setData(ArrayList<T> data){
+        this.data = data;
     }
 }
 

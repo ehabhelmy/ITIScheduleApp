@@ -3,28 +3,41 @@ package com.jets.mad.itischeduleapp.UI.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
-import com.jets.mad.itischeduleapp.UI.Activity.HomeActivity;
+import com.jets.mad.itischeduleapp.UI.Activity.MainActivity;
+import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.onItemClick;
+import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayData.DayRecyclerAdapter;
+import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker.DayMarkerRecyclerAdapter;
+import com.jets.mad.itischeduleapp.UI.Presenter.Interface.FragmentsCommunicator;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
+
+import java.util.ArrayList;
+
+import hirondelle.date4j.DateTime;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DayFragment extends Fragment{
+public class DayFragment extends Fragment implements FragmentsCommunicator.MonthToDayCommunicator {
 
     //UI References
     private RecyclerView recyclerView;
     private RecyclerView dayMarker;
+    private View rootView;
 
-
+    //Other References
+    private DateTime dateTime;
+    private DayMarkerRecyclerAdapter dayMarkerRecyclerAdapter;
+    private DayRecyclerAdapter dayRecyclerAdapter;
     private IHome.IHomeActivityUI homeActivity;
 
     public DayFragment() {
@@ -35,35 +48,56 @@ public class DayFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_day, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.day_list);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLinearLayoutManager);
-
-        dayMarker = (RecyclerView) rootView.findViewById(R.id.day_list_marker);
-        LinearLayoutManager markerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        dayMarker.setLayoutManager(markerLayoutManager);
+        rootView = inflater.inflate(R.layout.fragment_day, container, false);
+        prepareDayDataRecyclerView();
+        prepareDayMarkerRecyclerView();
 
         return rootView;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        recyclerView.setAdapter(homeActivity.getAdapter(1));
-        dayMarker.setAdapter(homeActivity.getAdapter(0));
-
-
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        homeActivity = (HomeActivity) context;
+        homeActivity = (MainActivity) context;
 
     }
 
+    /*================================ HELPFUL METHODS =========================================*/
+    private void prepareDayMarkerRecyclerView(){
+        //day marker recyclerview
+        dayMarker = (RecyclerView) rootView.findViewById(R.id.day_list_marker);
+        LinearLayoutManager markerLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        dayMarker.setLayoutManager(markerLayoutManager);
+        dayMarkerRecyclerAdapter = new DayMarkerRecyclerAdapter(R.layout.cell_day_marker);
+        homeActivity.setAdapterData(0, dateTime, dayMarkerRecyclerAdapter);
+        dayMarker.setAdapter(dayMarkerRecyclerAdapter);
+        dayMarkerRecyclerAdapter.setListener(new onItemClick() {
+            @Override
+            public void onItemClick(ArrayList data, int position) {
+                Toast.makeText(getActivity(), "dayMarker clicked", Toast.LENGTH_SHORT).show();
+
+                homeActivity.setAdapterData(1, dateTime, dayRecyclerAdapter);
+                dayRecyclerAdapter.notifyDataSetChanged();
+
+            }
+        });
+    }
+
+    private void prepareDayDataRecyclerView(){
+        //day data recyclerview
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.day_list);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        dayRecyclerAdapter = new DayRecyclerAdapter(R.layout.cell_day);
+        homeActivity.setAdapterData(1 ,dateTime, dayRecyclerAdapter);
+        recyclerView.setAdapter(dayRecyclerAdapter);
+    }
+
+    /*================================ MonthToDayCommunicator Interface =============================*/
+    @Override
+    public void setDateTime(DateTime dateTime) {
+        this.dateTime = dateTime;
+    }
 }

@@ -1,17 +1,17 @@
 package com.jets.mad.itischeduleapp.UI.Presenter.classes;
 
 import android.graphics.Color;
-import android.util.Log;
 
-import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseRecyclerViewAdapter;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.onItemClick;
 import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker.DayMarkerRecyclerAdapter;
-import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayData.DayRecyclerAdapter;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
 import com.jets.mad.itischeduleapp.datalayer.Models.Events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import hirondelle.date4j.DateTime;
 
 
 public class HomePresenter implements IHome.IHomePresenter {
@@ -19,6 +19,7 @@ public class HomePresenter implements IHome.IHomePresenter {
     public static final int DAY_MARKER = 0;
     public static final int DAY_Data = 1;
 
+    HashMap<DateTime, ArrayList<Events>> calenderEvents;
 
     private IHome.IHomeActivity homeActivity;
 
@@ -28,8 +29,8 @@ public class HomePresenter implements IHome.IHomePresenter {
 
     public HomePresenter(IHome.IHomeActivity homeActivity){
         this.homeActivity = homeActivity;
-        prepareDayAdapter(new ArrayList<Events>());
-        prepareDayMarker(new ArrayList<String>());
+//        prepareDayAdapter(new ArrayList<Events>(), null);
+//        prepareDayMarker(new ArrayList<String>(), null);
     }
 
     /*================================  IHome.IHomePresenter Interface ===================================*/
@@ -38,7 +39,7 @@ public class HomePresenter implements IHome.IHomePresenter {
      * This function is called by the network when it gets data fom backend
      ***/
     @Override
-    public void prepareDayAdapter(ArrayList<Events> events) {
+    public ArrayList<Events> prepareDayAdapter(ArrayList<Events> events, DateTime dateTime) {
 
         //testing data
         events.add(new Events("9 A.M.", "10 A.M.", "Study IOS", Color.parseColor("#f1534a")));
@@ -48,11 +49,11 @@ public class HomePresenter implements IHome.IHomePresenter {
         events.add(new Events("11 A.M.", "12 A.M.", "Study Android", Color.parseColor("#a9534a")));
         events.add(new Events("1 A.M.", "2 A.M.", "Study Design Pattern", Color.parseColor("#4bce12")));
 
-        dayRecyclerAdapter = new DayRecyclerAdapter(events, R.layout.cell_day);
+        return events;
 
     }
 
-    public void prepareDayMarker(ArrayList<String> dateArrayList){
+    public ArrayList<String> prepareDayMarker(ArrayList<String> dateArrayList, DateTime dateTime){
         dateArrayList.add("Tues 29");
         dateArrayList.add("Wed 30");
         dateArrayList.add("Thur 31");
@@ -61,25 +62,18 @@ public class HomePresenter implements IHome.IHomePresenter {
         dateArrayList.add("Sun 3");
         dateArrayList.add("Mon 4");
 
-        dayMarkerAdapter = new DayMarkerRecyclerAdapter(
-                        dateArrayList,
-                        R.layout.cell_day_marker,
-                        new onItemClick() {
-                            @Override
-                            public void onItemClick(ArrayList data, int position) {
-                                Log.i("TAG", "HomePreseneter : onItemClick: " + data.get(position));
-                            }
-                        }
-        );
+        return dateArrayList;
     }
-    @Override
-    public BaseRecyclerViewAdapter getAdapter(int flag) {
 
+
+    @Override
+    public void setAdapterData(int flag, DateTime dateTime, BaseRecyclerViewAdapter adapter) {
         switch (flag){
             case DAY_MARKER :
-                return dayMarkerAdapter;
+                adapter.setData(prepareDayMarker(new ArrayList<String>(), dateTime));
+                break;
             default:
-                return dayRecyclerAdapter;
+                adapter.setData(prepareDayAdapter(new ArrayList<Events>(), dateTime));
         }
     }
 }

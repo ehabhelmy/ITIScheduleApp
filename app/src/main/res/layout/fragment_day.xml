@@ -12,20 +12,20 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:id="@+id/day_list_marker"
             android:orientation="horizontal"
             android:divider="@null"
             android:paddingTop="20dp"
             android:elevation="30dp"
-            android:layout_weight="0.1"/>
+            android:layout_weight="0.3"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_margin="20dp"
             android:id="@+id/day_list"
-            android:layout_weight="2.5"/>
+            android:layout_weight="2.8"/>
     </LinearLayout>
 
 </FrameLayout>

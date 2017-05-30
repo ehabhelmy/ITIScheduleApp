@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity implements ISplash.ISplashAc
         Intent intent;
         switch (nextActivityName) {
             case HOME:
-                intent = new Intent(SplashScreen.this, HomeActivity.class);
+                intent = new Intent(SplashScreen.this, MainActivity.class);
                 Log.i("TAG", "SplashScreen.java goToNextActivity: HomeActivity");
                 startActivity(intent);
                 break;

@@ -35,25 +35,26 @@
 
 
         <!-- *** Login Activity *** -->
-        <activity android:name=".UI.Activity.LoginActivity"></activity>
+        <activity android:name=".UI.Activity.LoginActivity" />
         <!-- *** End of Login *** -->
 
 
-        <!-- *** End of Home Activiy *** -->
-        <activity android:name=".UI.Activity.HomeActivity">
+        <!--*** Main Activity***-->
 
-        </activity>
-        <!-- *** End of Home *** -->
-
-        <!-- *** TestActivity ***-->
-        <activity android:name=".UI.Activity.TestActivity">
+        <activity android:name=".UI.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- *** End of MainActivity *** -->
+
+
+        <!-- *** TestActivity *** -->
+        <activity android:name=".UI.Activity.TestActivity"></activity>
         <!-- *** End of Test *** -->
+
 
         <!-- === End of Activities === -->
 

@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity implements ILogin.ILoginAct
     /*========================= ILoginActivity Contract =========================*/
     @Override
     public void goToNextActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
         //close login activity

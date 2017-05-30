@@ -12,9 +12,9 @@ import com.jets.mad.itischeduleapp.datalayer.Models.Events;
 public class DayHolder extends BaseViewHolder<Events> {
 
     private CardView cardView;
-    private TextView startTime;
-    private TextView endTime;
-    private TextView eventName;
+    public TextView startTime;
+    public TextView endTime;
+    public TextView eventName;
     private View cardColor;
 
     public DayHolder(View itemView) {

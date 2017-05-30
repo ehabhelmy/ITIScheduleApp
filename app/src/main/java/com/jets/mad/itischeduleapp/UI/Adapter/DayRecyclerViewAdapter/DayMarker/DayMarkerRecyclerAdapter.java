@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public class DayMarkerRecyclerAdapter<String> extends BaseRecyclerViewAdapter {
 
     private int cellId;
-    private final onItemClick listener;
+    private onItemClick listener;
 
-    public DayMarkerRecyclerAdapter(ArrayList<String> data, int cellId, onItemClick<String> onItemClick) {
-        super(data);
+    public DayMarkerRecyclerAdapter(int cellId) {
+        super();
         this.cellId = cellId;
-        this.listener = onItemClick;
     }
 
     @Override
@@ -37,5 +36,7 @@ public class DayMarkerRecyclerAdapter<String> extends BaseRecyclerViewAdapter {
     }
 
 
-
+    public void setListener(onItemClick listener) {
+        this.listener = listener;
+    }
 }
