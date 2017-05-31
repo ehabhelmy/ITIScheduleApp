@@ -32,6 +32,7 @@ import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.onItem
 import com.jets.mad.itischeduleapp.UI.Adapter.SwipeDetector.OnFlingGestureListener;
 import com.jets.mad.itischeduleapp.UI.Fragment.DayFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
+import com.jets.mad.itischeduleapp.UI.Fragment.ProfileFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.WeekFragment;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
 import com.jets.mad.itischeduleapp.UI.Presenter.classes.HomePresenter;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     private MonthFragment monthFragment;
     private WeekFragment weekFragment;
     private DayFragment dayFragment;
+    private ProfileFragment profileFragment;
     private LinearLayout linearLayout;
     private ImageView view;
 
@@ -139,17 +141,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_schedule) {
 
-        } else if (id == R.id.nav_slideshow) {
+            replaceFragment(HomeFragments.MONTH);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_share) {
+            replaceFragment(HomeFragments.PROFILE);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_events) {
+
+            replaceFragment(HomeFragments.EVENT);
+
+        } else if (id == R.id.nav_logout) {
 
         }
 
@@ -261,6 +265,15 @@ public class MainActivity extends AppCompatActivity
                 }
                 fragmentTransaction.replace(R.id.lout,monthFragment);
                 fragmentTransaction.addToBackStack("MONTH");
+                break;
+            case PROFILE:
+                 profileFragment = (ProfileFragment) fragmentManager.findFragmentByTag("PROFILE");
+                if (profileFragment == null){
+                    profileFragment = new ProfileFragment();
+                }
+                fragmentTransaction.replace(R.id.lout,profileFragment);
+                break;
+            case EVENT:
                 break;
         }
 

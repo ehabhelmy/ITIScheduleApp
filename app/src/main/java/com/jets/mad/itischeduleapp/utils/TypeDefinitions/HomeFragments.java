@@ -7,5 +7,7 @@ package com.jets.mad.itischeduleapp.utils.TypeDefinitions;
 public enum HomeFragments {
     MONTH,
     WEEK,
-    DAY;
+    DAY,
+    PROFILE,
+    EVENT;
 }
