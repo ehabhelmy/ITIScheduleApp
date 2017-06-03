@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Fragment.DayDetailFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.DayFragment;
+import com.jets.mad.itischeduleapp.UI.Fragment.EventFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.ProfileEditFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.ProfileFragment;
@@ -23,6 +24,7 @@ public class FragmentsFactory {
     private DayFragment dayFragment;
     private ProfileFragment profileFragment;
     private ProfileEditFragment profileEditFragment;
+    private EventFragment eventFragment;
 
     public FragmentsFactory(FragmentManager fragmentManager){
         this.fragmentManager = fragmentManager;
@@ -67,6 +69,12 @@ public class FragmentsFactory {
                 fragmentTransaction.replace(R.id.lout,profileFragment);
                 break;
             case EVENT:
+                eventFragment = (EventFragment) fragmentManager.findFragmentByTag("EVENT");
+                if (eventFragment == null){
+                    eventFragment = new EventFragment();
+                }
+                fragmentTransaction.replace(R.id.lout,eventFragment,"EVENT");
+                fragmentTransaction.addToBackStack("Event");
                 break;
             case PROFILE_EDIT:
                 profileEditFragment = (ProfileEditFragment) fragmentManager.findFragmentByTag("PROFILE_EDIT");

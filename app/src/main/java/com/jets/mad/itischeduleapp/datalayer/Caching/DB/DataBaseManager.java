@@ -1,6 +1,5 @@
 package com.jets.mad.itischeduleapp.datalayer.Caching.DB;
 
-import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -37,6 +36,11 @@ public class DataBaseManager extends SQLiteOpenHelper {
         dbTables = new ArrayList<>();
     }
 
+    public void initializeTables() {
+        //call your tables here
+        EventsTable eventsTable = new EventsTable();
+        addTable(eventsTable);
+    }
     public static synchronized DataBaseManager getInstance(){
         if (instance == null){
             instance = new DataBaseManager();
@@ -58,7 +62,9 @@ public class DataBaseManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
+            initializeTables();
             for (AbstractTable table : dbTables) {
+                System.out.println("ana d5lt gwa el tables");
                 table.createTable(db);
             }
         }catch (SQLException ex){

@@ -12,6 +12,10 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     public BaseRecyclerViewAdapter(){
     }
 
+    public ArrayList<T> getData(){
+        return data;
+    }
+
     @Override
     public abstract BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType);
 

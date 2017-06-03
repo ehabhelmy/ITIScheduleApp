@@ -29,15 +29,19 @@ import com.jets.mad.itischeduleapp.UI.Fragment.DayFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.ProfileFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.WeekFragment;
+import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IEvent;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
+import com.jets.mad.itischeduleapp.UI.Presenter.classes.EventPresenter;
 import com.jets.mad.itischeduleapp.UI.Presenter.classes.HomePresenter;
+import com.jets.mad.itischeduleapp.datalayer.Caching.DB.EventsTable;
+import com.jets.mad.itischeduleapp.datalayer.Models.Events;
 import com.jets.mad.itischeduleapp.utils.TypeDefinitions.HomeFragments;
 import com.jets.mad.itischeduleapp.utils.UI.FragmentsFactory;
 
 import hirondelle.date4j.DateTime;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IHome.IHomeActivity, IHome.IHomeActivityUI {
+        implements NavigationView.OnNavigationItemSelectedListener, IHome.IHomeActivity, IHome.IHomeActivityUI,IEvent.IEventActivity {
 
 
     //UI Reference
@@ -51,13 +55,22 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout linearLayout;
     private ImageView view;
     private FragmentsFactory fragmentsFactory;
+    private EventPresenter eventPresenter;
+    private EventsTable eventsTable;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //////////////////////////// insert dummy data into data base ///////////////////////
+        eventsTable = new EventsTable();
+        eventsTable.insert(new Events("5/5/2017","15/5/2017","MDW",2,"EVENT",1,Events.REGISTERED));
+        eventsTable.insert(new Events("5/4/2017","15/4/2017","GAME JAM",2,"EVENT",2,Events.REGISTERED));
+        eventsTable.insert(new Events("5/3/2017","15/3/2017","NASA",2,"EVENT",3,Events.NOTREGISTERED));
+        eventsTable.insert(new Events("5/2/2017","15/2/2017","PATROL",2,"EVENT",4,Events.NOTREGISTERED));
+        eventsTable.insert(new Events("5/1/2017","15/1/2017","FUN DAY",2,"EVENT",5,Events.REGISTERED));
+        /////////////////////////////////////////////////////////////////////////////////////
 
         fragmentManager = getSupportFragmentManager();
 
@@ -71,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         prepareSpinner();
         prepareSlidingView();
         homePresenter = new HomePresenter(this);
+        eventPresenter = new EventPresenter(this);
 
 
 
@@ -228,5 +242,15 @@ public class MainActivity extends AppCompatActivity
         fragmentsFactory.getFragment(HomeFragments.DAY);
         dayFragment = fragmentsFactory.getDayFragment();
         dayFragment.setDateTime(dateTime);
+    }
+
+    @Override
+    public IEvent.IEventPresenter getEventPresenter() {
+        return eventPresenter;
+    }
+
+    @Override
+    public void setEventAdapterData(int flag, BaseRecyclerViewAdapter adapter) {
+        eventPresenter.setAdapterData(flag,adapter);
     }
 }

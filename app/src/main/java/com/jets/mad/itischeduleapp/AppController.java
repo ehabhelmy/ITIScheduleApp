@@ -4,12 +4,14 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.jets.mad.itischeduleapp.datalayer.Caching.DB.DataBaseManager;
+
 
 public class AppController extends Application {
 
     private static AppController appInstance;
     private Handler handler;
-
+    private DataBaseManager dataBaseManager;
 
     public static AppController getInstance(){
         return appInstance;
@@ -21,6 +23,8 @@ public class AppController extends Application {
 
         appInstance = this;
         handler = new Handler(Looper.getMainLooper());
+        dataBaseManager = DataBaseManager.getInstance();
+
     }
 
 

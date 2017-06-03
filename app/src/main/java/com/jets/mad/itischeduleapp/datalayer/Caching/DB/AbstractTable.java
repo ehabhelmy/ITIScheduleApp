@@ -15,6 +15,7 @@ import java.util.List;
 
 public abstract class AbstractTable<T extends BaseModel> {
 
+    protected DataBaseManager dataBaseManager;
     protected abstract String getTableName();
 
     protected abstract T getModelFromCursor(Cursor cursor);
@@ -24,7 +25,7 @@ public abstract class AbstractTable<T extends BaseModel> {
     protected abstract void createTable(SQLiteDatabase db);
 
     protected AbstractTable(){
-        DataBaseManager.getInstance();
+        dataBaseManager = DataBaseManager.getInstance();
     }
 
     public List<T> getBySelection(String selection,String[] args){
