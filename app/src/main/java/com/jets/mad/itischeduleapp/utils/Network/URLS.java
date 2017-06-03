@@ -3,7 +3,7 @@ package com.jets.mad.itischeduleapp.utils.Network;
 
 public class URLS {
     public static final String LOGIN_URL = "http://localhost:8080/AuthServer/oauth/authorize";
-    //"http://putsreq.com/J54KcEXYY1eeoK9jcs8K";
-    //http://term.ie/oauth/example/request_token.php/
+    public static final String PROFILE_URL = "http://itibackend.herokuapp.com/getUser";
+    public static final String PROFILE_EDIT_URL = "https://itibackend.herokuapp.com/updateUser";
 }
 

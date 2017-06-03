@@ -45,4 +45,8 @@ public class TabsAdapter extends FragmentPagerAdapter {
         return tabNames[position];
 
     }
+
+    public ProfileDataFragment getProfileDataFragment() {
+        return profileDataFragment;
+    }
 }

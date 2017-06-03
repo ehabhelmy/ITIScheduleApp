@@ -2,17 +2,28 @@ package com.jets.mad.itischeduleapp.datalayer.Models;
 
 public class Events extends BaseModel {
 
+    private int id;
     private String startTime;
     private String endTime;
     private String eventName;
     private int color;
 
-    public Events(String startTime, String endTime, String eventName, int color){
+    public Events(int id, String startTime, String endTime, String eventName, int color){
+        this.id = id;
         this.endTime = endTime;
         this.startTime = startTime;
         this.eventName = eventName;
         this.color = color;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getStartTime() {
         return startTime;
     }

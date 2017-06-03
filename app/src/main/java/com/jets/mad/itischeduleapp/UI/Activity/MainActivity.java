@@ -1,14 +1,11 @@
 package com.jets.mad.itischeduleapp.UI.Activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -28,7 +24,6 @@ import android.widget.Spinner;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseRecyclerViewAdapter;
-import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.onItemClick;
 import com.jets.mad.itischeduleapp.UI.Adapter.SwipeDetector.OnFlingGestureListener;
 import com.jets.mad.itischeduleapp.UI.Fragment.DayFragment;
 import com.jets.mad.itischeduleapp.UI.Fragment.MonthFragment;
@@ -37,6 +32,7 @@ import com.jets.mad.itischeduleapp.UI.Fragment.WeekFragment;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
 import com.jets.mad.itischeduleapp.UI.Presenter.classes.HomePresenter;
 import com.jets.mad.itischeduleapp.utils.TypeDefinitions.HomeFragments;
+import com.jets.mad.itischeduleapp.utils.UI.FragmentsFactory;
 
 import hirondelle.date4j.DateTime;
 
@@ -54,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private ProfileFragment profileFragment;
     private LinearLayout linearLayout;
     private ImageView view;
+    private FragmentsFactory fragmentsFactory;
 
 
     @Override
@@ -67,10 +64,9 @@ public class MainActivity extends AppCompatActivity
         monthFragment = new MonthFragment();
 
         linearLayout = (LinearLayout) findViewById(R.id.lout);
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.lout,monthFragment,"MONTH");
-        fragmentTransaction.addToBackStack("MONTH");
-        fragmentTransaction.commit();
+
+        fragmentsFactory = new FragmentsFactory(fragmentManager);
+        fragmentsFactory.getFragment(HomeFragments.MONTH);
 
         prepareSpinner();
         prepareSlidingView();
@@ -143,15 +139,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_schedule) {
 
-            replaceFragment(HomeFragments.MONTH);
+            fragmentsFactory.getFragment(HomeFragments.MONTH);
 
         } else if (id == R.id.nav_profile) {
-
-            replaceFragment(HomeFragments.PROFILE);
+            fragmentsFactory.getFragment(HomeFragments.PROFILE);
 
         } else if (id == R.id.nav_events) {
-
-            replaceFragment(HomeFragments.EVENT);
+            fragmentsFactory.getFragment(HomeFragments.EVENT);
 
         } else if (id == R.id.nav_logout) {
 
@@ -169,7 +163,7 @@ public class MainActivity extends AppCompatActivity
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                replaceFragment(HomeFragments.values()[position]);
+                fragmentsFactory.getFragment(HomeFragments.values()[position]);
             }
 
             @Override
@@ -201,7 +195,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onBottomToTop() {
                 System.out.println("swiped");
-                replaceFragment(HomeFragments.WEEK);
+                fragmentsFactory.getFragment(HomeFragments.WEEK);
                 view.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_keyboard_arrow_down_black_24dp));;
 
 
@@ -209,7 +203,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onTopToBottom() {
-                replaceFragment(HomeFragments.MONTH);
+                fragmentsFactory.getFragment(HomeFragments.MONTH);
                 view.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_keyboard_arrow_up_black_24dp));;
             }
         });
@@ -225,66 +219,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void replaceFragment(HomeFragments homeFragments) {
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter,R.anim.exit,R.anim.popenter,R.anim.popexit);
-
-
-        //replace fragments according to input
-        switch (homeFragments){
-
-            case DAY:
-                //prepare transaction
-                view.setVisibility(View.GONE);
-                dayFragment = (DayFragment) fragmentManager.findFragmentByTag("DAY");
-                if (dayFragment == null){
-                    dayFragment = new DayFragment();
-                }
-                fragmentTransaction.replace(R.id.lout,dayFragment,"DAY");
-                fragmentTransaction.addToBackStack("DAY");
-                break;
-            case WEEK:
-                weekFragment = (WeekFragment) fragmentManager.findFragmentByTag("WEEK");
-                if (weekFragment == null){
-                    weekFragment = new WeekFragment();
-                }
-                fragmentTransaction.replace(R.id.lout,weekFragment,"WEEK");
-                fragmentTransaction.addToBackStack("WEEK");
-//                view.setVisibility(View.GONE);
-//                LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
-//                        LinearLayout.LayoutParams.MATCH_PARENT,
-//                        LinearLayout.LayoutParams.MATCH_PARENT,
-//                        8.0f
-//                );
-//                linearLayout.setLayoutParams(param);
-                break;
-            case MONTH:
-                monthFragment = (MonthFragment) fragmentManager.findFragmentByTag("MONTH");
-                if (monthFragment == null){
-                    monthFragment = new MonthFragment();
-                }
-                fragmentTransaction.replace(R.id.lout,monthFragment);
-                fragmentTransaction.addToBackStack("MONTH");
-                break;
-            case PROFILE:
-                 profileFragment = (ProfileFragment) fragmentManager.findFragmentByTag("PROFILE");
-                if (profileFragment == null){
-                    profileFragment = new ProfileFragment();
-                }
-                fragmentTransaction.replace(R.id.lout,profileFragment);
-                break;
-            case EVENT:
-                break;
-        }
-
-        //commit transaction
-        fragmentTransaction.commit();
-
+        fragmentsFactory.getFragment(homeFragments);
     }
+
 
     @Override
     public void monthToDayCommunicate(DateTime dateTime) {
-        replaceFragment(HomeFragments.DAY);
+        fragmentsFactory.getFragment(HomeFragments.DAY);
+        dayFragment = fragmentsFactory.getDayFragment();
         dayFragment.setDateTime(dateTime);
     }
 }

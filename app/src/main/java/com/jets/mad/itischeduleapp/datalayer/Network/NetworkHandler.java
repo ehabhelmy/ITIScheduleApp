@@ -7,8 +7,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.jets.mad.itischeduleapp.datalayer.Models.BaseModel;
 import com.jets.mad.itischeduleapp.utils.TypeDefinitions.NetworkMethods;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 public class NetworkHandler {
@@ -28,6 +31,46 @@ public class NetworkHandler {
     }
 
 
+    public static void callWebServiceUsingPostWithObjectParam(String url, final BaseModel object, final NetworkCallback networkCallback){
+
+        Gson gson = new Gson();
+        final String body = gson.toJson(object);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("TAG", "NetworkHandler.java callWebServiceUsingPostWithObjectParam : onResponse: " + response);
+                        networkCallback.onSuccess(response);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("TAG", "NetworkHandler.java callWebServiceUsingPostWithObjectParam : onErrorResponse: " + error.toString());
+                networkCallback.onError(error);
+            }
+        }){
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return body.getBytes("utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        // Add the request to the RequestQueue.
+        VolleyRequestSingleton.getInstance().addToRequestQueue(stringRequest);
+
+    }
 
     /*========================================== HELPFUL METHODS ===============================================*/
 

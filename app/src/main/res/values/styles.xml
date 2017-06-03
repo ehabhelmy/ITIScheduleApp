@@ -21,4 +21,8 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/open_center</item>
+    </style>
+
 </resources>

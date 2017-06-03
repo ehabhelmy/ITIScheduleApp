@@ -63,6 +63,17 @@
                 android:text="Study Android"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/day_event_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="16dp"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:text="id"
+                android:textSize="20sp" />
+
             <ImageView
                 android:id="@+id/imageView_start"
                 android:layout_width="wrap_content"

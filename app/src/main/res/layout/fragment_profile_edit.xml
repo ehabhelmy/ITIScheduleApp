@@ -1,0 +1,79 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50dp">
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="84dp"
+            android:layout_height="35dp"
+            android:text="Email"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/profile_edit_phone"
+            android:layout_alignStart="@+id/phone" />
+
+        <TextView
+            android:id="@+id/firstname"
+            android:layout_width="87dp"
+            android:layout_height="38dp"
+            android:text="FirstName"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/lastname" />
+
+        <EditText
+            android:id="@+id/profile_edit_phone"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:text="01008894627"
+            android:layout_alignBaseline="@+id/phone"
+            android:layout_alignBottom="@+id/phone"
+            android:layout_alignStart="@+id/profile_edit_lastname" />
+
+        <EditText
+            android:id="@+id/profile_edit_email"
+            android:layout_width="201dp"
+            android:layout_height="wrap_content"
+            android:text="toqa.eid@gmail.com"
+            android:layout_alignBottom="@+id/email"
+            android:layout_alignEnd="@+id/profile_edit_phone" />
+
+
+        <EditText
+            android:id="@+id/profile_edit_lastname"
+            android:layout_width="201dp"
+            android:layout_height="wrap_content"
+            android:text="AbdelKader"
+            android:layout_marginEnd="12dp"
+            android:layout_alignBottom="@+id/lastname"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/profile_edit_firstname"
+            android:layout_width="201dp"
+            android:layout_height="wrap_content"
+            android:text="Toqa"
+            android:layout_marginRight="3dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/profile_edit_email" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="87dp"
+            android:layout_height="33dp"
+            android:text="Phone"
+            android:layout_marginTop="32dp"
+            android:layout_below="@+id/lastname"
+            android:layout_alignStart="@+id/lastname" />
+
+        <TextView
+            android:id="@+id/lastname"
+            android:layout_width="81dp"
+            android:layout_height="35dp"
+            android:text="LastName"
+            android:layout_below="@+id/profile_edit_firstname"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="19dp" />
+
+    </RelativeLayout>

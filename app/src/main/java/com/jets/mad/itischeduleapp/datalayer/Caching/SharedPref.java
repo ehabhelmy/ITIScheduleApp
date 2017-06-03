@@ -3,6 +3,7 @@ package com.jets.mad.itischeduleapp.datalayer.Caching;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
 import com.jets.mad.itischeduleapp.AppController;
 import com.jets.mad.itischeduleapp.datalayer.Models.BaseModel;
 
@@ -27,7 +28,16 @@ public class SharedPref {
     }
 
     public static String retreiveString(String key){
-        return prefs.getString(key, "no val");
+        return prefs.getString(key, null);
+    }
+
+    public static void saveObject(String key, BaseModel object){
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String jsonObj = gson.toJson(object);
+        editor.putString(key, jsonObj);
+        editor.commit();
+
     }
 
 }

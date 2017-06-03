@@ -4,12 +4,15 @@ package com.jets.mad.itischeduleapp.UI.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
@@ -19,6 +22,7 @@ import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayData.Day
 import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker.DayMarkerRecyclerAdapter;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.FragmentsCommunicator;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
+import com.jets.mad.itischeduleapp.utils.TypeDefinitions.HomeFragments;
 
 import java.util.ArrayList;
 
@@ -88,10 +92,29 @@ public class DayFragment extends Fragment implements FragmentsCommunicator.Month
     private void prepareDayDataRecyclerView(){
         //day data recyclerview
         recyclerView = (RecyclerView) rootView.findViewById(R.id.day_list);
+        TextView id = (TextView) rootView.findViewById(R.id.day_event_id);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLinearLayoutManager);
         dayRecyclerAdapter = new DayRecyclerAdapter(R.layout.cell_day);
         homeActivity.setAdapterData(1 ,dateTime, dayRecyclerAdapter);
+        dayRecyclerAdapter.setListener(new onItemClick() {
+            @Override
+            public void onItemClick(ArrayList data, int position) {
+                Toast.makeText(getActivity(), "dayDetails clicked", Toast.LENGTH_SHORT).show();
+
+
+                FragmentManager  fm = getFragmentManager();
+                // FragmentTransaction ft = fm.beginTransaction();
+                DayDetailFragment dFragment = new DayDetailFragment();
+                // Show DialogFragment
+                dFragment.show(fm, "Dialog Fragment");
+
+
+
+
+                //homeActivity.replaceFragment(HomeFragments.DETAILS);
+            }
+        });
         recyclerView.setAdapter(dayRecyclerAdapter);
     }
 

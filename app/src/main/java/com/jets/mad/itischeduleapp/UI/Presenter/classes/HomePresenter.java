@@ -42,12 +42,12 @@ public class HomePresenter implements IHome.IHomePresenter {
     public ArrayList<Events> prepareDayAdapter(ArrayList<Events> events, DateTime dateTime) {
 
         //testing data
-        events.add(new Events("9 A.M.", "10 A.M.", "Study IOS", Color.parseColor("#f1534a")));
-        events.add(new Events("11 A.M.", "12 A.M.", "Study Android", Color.parseColor("#a9534a")));
-        events.add(new Events("1 A.M.", "2 A.M.", "Study Design Pattern", Color.parseColor("#4bce12")));
-        events.add(new Events("9 A.M.", "10 A.M.", "Study IOS", Color.parseColor("#f1534a")));
-        events.add(new Events("11 A.M.", "12 A.M.", "Study Android", Color.parseColor("#a9534a")));
-        events.add(new Events("1 A.M.", "2 A.M.", "Study Design Pattern", Color.parseColor("#4bce12")));
+        events.add(new Events(1, "9 A.M.", "10 A.M.", "Study IOS", Color.parseColor("#f1534a")));
+        events.add(new Events(2, "11 A.M.", "12 A.M.", "Study Android", Color.parseColor("#a9534a")));
+        events.add(new Events(3, "1 A.M.", "2 A.M.", "Study Design Pattern", Color.parseColor("#4bce12")));
+        events.add(new Events(4, "9 A.M.", "10 A.M.", "Study IOS", Color.parseColor("#f1534a")));
+        events.add(new Events(5, "11 A.M.", "12 A.M.", "Study Android", Color.parseColor("#a9534a")));
+        events.add(new Events(6, "1 A.M.", "2 A.M.", "Study Design Pattern", Color.parseColor("#4bce12")));
 
         return events;
 

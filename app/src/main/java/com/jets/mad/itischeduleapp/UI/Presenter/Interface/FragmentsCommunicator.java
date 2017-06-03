@@ -14,4 +14,5 @@ public interface FragmentsCommunicator {
     interface MonthToDayCommunicator{
         public void setDateTime(DateTime dateTime);
     }
+
 }

@@ -17,7 +17,11 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.configure(data.get(position));
+        if(data != null) {
+            holder.configure(data.get(position));
+        }else{
+            //TODO: throw exception
+        }
     }
 
 

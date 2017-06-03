@@ -39,7 +39,7 @@
         <!-- *** End of Login *** -->
 
 
-        <!--*** Main Activity***-->
+        <!-- *** Main Activity*** -->
 
         <activity android:name=".UI.Activity.MainActivity">
             <intent-filter>
@@ -52,7 +52,7 @@
 
 
         <!-- *** TestActivity *** -->
-        <activity android:name=".UI.Activity.TestActivity"></activity>
+        <activity android:name=".UI.Activity.TestActivity" />
         <!-- *** End of Test *** -->
 
 
@@ -68,6 +68,7 @@
 
         <!-- === End of Services === -->
 
+        <activity android:name=".UI.Activity.ProfileEditActivity"></activity>
     </application>
 
 </manifest>

@@ -9,5 +9,7 @@ public enum HomeFragments {
     WEEK,
     DAY,
     PROFILE,
-    EVENT;
+    PROFILE_EDIT,
+    EVENT,
+    DETAILS;
 }
