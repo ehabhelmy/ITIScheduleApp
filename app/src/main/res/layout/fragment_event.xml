@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8"
+    tools:context="com.jets.mad.itischeduleapp.UI.Fragment.EventFragment">
+
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="My Events"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/regEvents"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_height="0dp" />
+
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Events" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/nregEvents"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_height="0dp" />
+</LinearLayout>
