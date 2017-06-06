@@ -1,5 +1,6 @@
 package com.jets.mad.itischeduleapp.utils.UI;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -56,9 +57,15 @@ public class FragmentsFactory {
                 break;
             case MONTH:
                 monthFragment = (MonthFragment) fragmentManager.findFragmentByTag("MONTH");
+
                 if (monthFragment == null){
                     monthFragment = new MonthFragment();
                 }
+
+                Bundle args = new Bundle();
+                args.putInt(MonthFragment.THEME_RESOURCE, R.style.CaldroidDefaultLight);
+                monthFragment.setArguments(args);
+
                 fragmentTransaction.replace(R.id.lout,monthFragment);
                 break;
             case PROFILE:

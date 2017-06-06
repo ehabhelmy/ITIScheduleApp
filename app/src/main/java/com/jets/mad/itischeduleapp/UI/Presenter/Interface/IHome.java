@@ -32,7 +32,7 @@ public interface IHome {
      * this interface contains functions that will be called by DayFragment
      * its functions are UI related
      ***/
-    interface IHomeActivityUI{
+    interface IHomeActivityUI {
         public void setAdapterData(int flag, DateTime dateTime, BaseRecyclerViewAdapter adapter);
         public void replaceFragment(HomeFragments homeFragments);
         public void monthToDayCommunicate(DateTime dateTime);

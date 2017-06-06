@@ -47,10 +47,11 @@ public class ProfileEditFragment extends Fragment implements IProfileEdit.IProfi
 
         try {
             profileEditDataAdapter = presenter.getDataAdapter();
+            profileEditDataAdapter.setDataView(rootView);
         } catch (UserException e) {
             Log.i("TAG", "onCreateView: " + e.toString());
         }
-        profileEditDataAdapter.setDataView(rootView);
+
 
         return rootView;
     }

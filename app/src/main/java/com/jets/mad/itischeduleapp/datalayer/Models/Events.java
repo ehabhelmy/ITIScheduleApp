@@ -8,29 +8,40 @@ public class Events extends BaseModel {
     private String eventName;
     private String type;
     private int color;
+    private String description;
     private String register;
     public static final String REGISTERED = "registered";
     public static final String NOTREGISTERED = "notregistered";
 
-    public Events(int id, String startTime, String endTime, String eventName, int color){
+    public Events(int id, String startTime, String endTime, String description, String eventName, int color){
         this.id = id;
+        this.description = description;
         this.endTime = endTime;
         this.startTime = startTime;
         this.eventName = eventName;
         this.color = color;
     }
 
-    public Events(String startTime, String endTime, String eventName, int color,String type,int id,String register){
+    public Events(String startTime, String endTime, String eventName, String description, int color,String type,int id,String register){
         this.endTime = endTime;
         this.startTime = startTime;
         this.eventName = eventName;
         this.color = color;
         this.type = type;
+        this.description = description;
         this.id = id;
         this.register = register;
     }
 
     public Events() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getRegister() {

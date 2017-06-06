@@ -3,6 +3,8 @@ package com.jets.mad.itischeduleapp.UI.Fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.view.View;
+
 import com.jets.mad.itischeduleapp.UI.Activity.MainActivity;
 import com.jets.mad.itischeduleapp.UI.Adapter.CalendarAdapter;
 import com.jets.mad.itischeduleapp.UI.Adapter.OnDayClickListener;
@@ -21,6 +23,10 @@ public class MonthFragment extends CaldroidFragment {
 
     @Override
     public CaldroidGridAdapter getNewDatesGridAdapter(int month, int year) {
+
+        getLeftArrowButton().setVisibility(View.GONE);
+        getRightArrowButton().setVisibility(View.GONE);
+
         return new CalendarAdapter(getActivity(), month, year,
                 getCaldroidData(), extraData, new OnDayClickListener() {
             @Override
@@ -35,5 +41,6 @@ public class MonthFragment extends CaldroidFragment {
         super.onAttach(context);
         homeActivity = (MainActivity) context;
     }
+
 
 }

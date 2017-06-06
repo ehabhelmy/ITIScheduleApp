@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jets.mad.itischeduleapp.R;
@@ -32,7 +33,7 @@ public class ProfileFragment extends Fragment implements IProfile.IDataToProfile
 
     //UI References
     private ViewPager viewPager;
-    private FloatingActionButton editBtn;
+    private ImageView editBtn;
     private TextView username;
 
     private IProfile.IProfileToDataCommunicator dataCommunicator;
@@ -61,7 +62,7 @@ public class ProfileFragment extends Fragment implements IProfile.IDataToProfile
         dataCommunicator = (IProfile.IProfileToDataCommunicator) tabsAdapter.getProfileDataFragment();
         dataCommunicator.setProfile(this);
 
-        editBtn = (FloatingActionButton) rootView.findViewById(R.id.profile_edit_btn);
+        editBtn = (ImageView) rootView.findViewById(R.id.profile_edit_btn);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

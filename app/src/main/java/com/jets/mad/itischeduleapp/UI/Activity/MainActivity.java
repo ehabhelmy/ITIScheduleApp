@@ -1,6 +1,7 @@
 package com.jets.mad.itischeduleapp.UI.Activity;
 
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -18,9 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.AbstractRecyclerViewAdapter.BaseRecyclerViewAdapter;
@@ -45,6 +48,13 @@ public class MainActivity extends AppCompatActivity
 
 
     //UI Reference
+    Spinner spinner;
+    private LinearLayout linearLayout;
+    private ImageView view;
+    private ImageButton notificationBtn;
+    private FloatingActionButton fab;
+    private TextView notificationNum;
+
     private IHome.IHomePresenter homePresenter;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -52,8 +62,6 @@ public class MainActivity extends AppCompatActivity
     private WeekFragment weekFragment;
     private DayFragment dayFragment;
     private ProfileFragment profileFragment;
-    private LinearLayout linearLayout;
-    private ImageView view;
     private FragmentsFactory fragmentsFactory;
     private EventPresenter eventPresenter;
     private EventsTable eventsTable;
@@ -65,12 +73,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //////////////////////////// insert dummy data into data base ///////////////////////
         eventsTable = new EventsTable();
-        eventsTable.insert(new Events("5/5/2017","15/5/2017","MDW",2,"EVENT",1,Events.REGISTERED));
-        eventsTable.insert(new Events("5/4/2017","15/4/2017","GAME JAM",2,"EVENT",2,Events.REGISTERED));
-        eventsTable.insert(new Events("5/3/2017","15/3/2017","NASA",2,"EVENT",3,Events.NOTREGISTERED));
-        eventsTable.insert(new Events("5/2/2017","15/2/2017","PATROL",2,"EVENT",4,Events.NOTREGISTERED));
-        eventsTable.insert(new Events("5/1/2017","15/1/2017","FUN DAY",2,"EVENT",5,Events.REGISTERED));
+        eventsTable.insert(new Events("5/5/2017","15/5/2017", "dddddd", "MDW",2,"EVENT",1,Events.REGISTERED));
+        eventsTable.insert(new Events("5/4/2017","15/4/2017", "dddddd","GAME JAM",2,"EVENT",2,Events.REGISTERED));
+        eventsTable.insert(new Events("5/3/2017","15/3/2017", "dddddd","NASA",2,"EVENT",3,Events.NOTREGISTERED));
+        eventsTable.insert(new Events("5/2/2017","15/2/2017", "dddddd","PATROL",2,"EVENT",4,Events.NOTREGISTERED));
+        eventsTable.insert(new Events("5/1/2017","15/1/2017", "dddddd","FUN DAY",2,"EVENT",5,Events.REGISTERED));
         /////////////////////////////////////////////////////////////////////////////////////
+
+        homePresenter = new HomePresenter(this);
+        eventPresenter = new EventPresenter(this);
 
         fragmentManager = getSupportFragmentManager();
 
@@ -83,17 +94,25 @@ public class MainActivity extends AppCompatActivity
 
         prepareSpinner();
         prepareSlidingView();
-        homePresenter = new HomePresenter(this);
-        eventPresenter = new EventPresenter(this);
 
+        /////NOTIFICATION
+        notificationNum = (TextView) findViewById(R.id.notification_number);
+        notificationBtn = (ImageButton) findViewById(R.id.notification_btn);
+        notificationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: go to notifications view
+            }
+        });
 
-
+        /////TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //remove app name from toolbar
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /////FLOATING Button
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +121,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        /////NAV DRAWER
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -122,28 +142,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -153,13 +151,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_schedule) {
 
-            fragmentsFactory.getFragment(HomeFragments.MONTH);
+            replaceFragment(HomeFragments.MONTH);
 
         } else if (id == R.id.nav_profile) {
-            fragmentsFactory.getFragment(HomeFragments.PROFILE);
+            replaceFragment(HomeFragments.PROFILE);
 
         } else if (id == R.id.nav_events) {
-            fragmentsFactory.getFragment(HomeFragments.EVENT);
+            replaceFragment(HomeFragments.EVENT);
 
         } else if (id == R.id.nav_logout) {
 
@@ -173,11 +171,11 @@ public class MainActivity extends AppCompatActivity
 
     /*====================================== HELPFUL METHODS =============================================*/
     private void prepareSpinner(){
-        Spinner spinner = (Spinner) findViewById(R.id.calendar_options);
+        spinner = (Spinner) findViewById(R.id.calendar_options);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fragmentsFactory.getFragment(HomeFragments.values()[position]);
+                replaceFragment(HomeFragments.values()[position]);
             }
 
             @Override
@@ -209,7 +207,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onBottomToTop() {
                 System.out.println("swiped");
-                fragmentsFactory.getFragment(HomeFragments.WEEK);
+                replaceFragment(HomeFragments.WEEK);
                 view.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_keyboard_arrow_down_black_24dp));;
 
 
@@ -217,7 +215,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onTopToBottom() {
-                fragmentsFactory.getFragment(HomeFragments.MONTH);
+                replaceFragment(HomeFragments.MONTH);
                 view.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_keyboard_arrow_up_black_24dp));;
             }
         });
@@ -233,13 +231,30 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void replaceFragment(HomeFragments homeFragments) {
+
+        Log.i("TAG", "MainActivity replaceFragment:");
+        //setting visibility of spinner
+        switch (homeFragments){
+            case MONTH:
+            case WEEK:
+            case DAY:
+                Log.i("TAG", "MainActivity replaceFragment: spinner visibility : visible");
+                spinner.setVisibility(View.VISIBLE);
+                fab.setVisibility(View.VISIBLE);
+                break;
+            default:
+                Log.i("TAG", "MainActivity replaceFragment: spinner visibility : invisible");
+                spinner.setVisibility(View.INVISIBLE);
+                fab.setVisibility(View.INVISIBLE);
+        }
+
         fragmentsFactory.getFragment(homeFragments);
     }
 
 
     @Override
     public void monthToDayCommunicate(DateTime dateTime) {
-        fragmentsFactory.getFragment(HomeFragments.DAY);
+        replaceFragment(HomeFragments.DAY);
         dayFragment = fragmentsFactory.getDayFragment();
         dayFragment.setDateTime(dateTime);
     }
@@ -253,4 +268,5 @@ public class MainActivity extends AppCompatActivity
     public void setEventAdapterData(int flag, BaseRecyclerViewAdapter adapter) {
         eventPresenter.setAdapterData(flag,adapter);
     }
+
 }

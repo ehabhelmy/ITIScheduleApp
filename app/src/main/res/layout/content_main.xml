@@ -5,29 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="8"
-    android:layout_marginTop="58dp"
+    android:layout_marginTop="53dp"
     android:orientation="vertical"
-    tools:context="com.jets.mad.itischeduleapp.UI.Activity.HomeActivity">
+    tools:context="com.jets.mad.itischeduleapp.UI.Activity.MainActivity">
 
 
     <LinearLayout
         android:id="@+id/lout"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="7.6"
+        android:layout_weight="7.99"
         android:orientation="horizontal"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" >
 
     </LinearLayout>
-    <!--<View-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="0.6"-->
-        <!--android:clickable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:focusable="true"-->
-        <!--android:id="@+id/draggable">-->
 
     <ImageView
         android:id="@+id/draggable"
@@ -37,7 +29,7 @@
         android:clickable="true"
         android:focusableInTouchMode="true"
         android:focusable="true"
-        android:layout_weight="0.4"
+        android:layout_weight="0.011"
         app:srcCompat="@mipmap/ic_keyboard_arrow_down_black_24dp" />
 
 

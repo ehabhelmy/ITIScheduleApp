@@ -37,6 +37,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
     public CalendarAdapter(Context context, int month, int year, Map<String, Object> caldroidData, Map<String, Object> extraData, OnDayClickListener onDayClickListener) {
         super(context, month, year, caldroidData, extraData);
         this.onDayClickListener = onDayClickListener;
+
     }
 
     @Override
@@ -115,7 +116,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
         if (shouldResetDiabledView && shouldResetSelectedView) {
             // Customize for today
             if (dateTime.equals(getToday())) {
-                cellView.setBackgroundResource(com.caldroid.R.drawable.red_border);
+                cellView.setBackgroundResource(R.drawable.month_cell);
             } else {
                 cellView.setBackgroundResource(com.caldroid.R.drawable.cell_bg);
             }

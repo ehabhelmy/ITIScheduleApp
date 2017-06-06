@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,8 +21,6 @@ import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayData.Day
 import com.jets.mad.itischeduleapp.UI.Adapter.DayRecyclerViewAdapter.DayMarker.DayMarkerRecyclerAdapter;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.FragmentsCommunicator;
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.IHome;
-import com.jets.mad.itischeduleapp.utils.TypeDefinitions.HomeFragments;
-
 import java.util.ArrayList;
 
 import hirondelle.date4j.DateTime;
@@ -103,9 +100,15 @@ public class DayFragment extends Fragment implements FragmentsCommunicator.Month
                 Toast.makeText(getActivity(), "dayDetails clicked", Toast.LENGTH_SHORT).show();
 
 
+                Bundle args = new Bundle();
+                args.putInt("data_position", position);
+
                 FragmentManager  fm = getFragmentManager();
                 // FragmentTransaction ft = fm.beginTransaction();
                 DayDetailFragment dFragment = new DayDetailFragment();
+
+                dFragment.setArguments(args);
+
                 // Show DialogFragment
                 dFragment.show(fm, "Dialog Fragment");
 

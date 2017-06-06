@@ -13,16 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:eventTextColor="@android:color/white"
+        android:layout_marginTop="10dp"
         app:textSize="12sp"
         app:hourHeight="60dp"
         app:headerColumnPadding="8dp"
-        app:headerColumnTextColor="#8f000000"
+        app:headerColumnTextColor="@color/caldroid_middle_gray"
         app:headerRowPadding="12dp"
-        app:columnGap="8dp"
+        app:columnGap="1dp"
         app:noOfVisibleDays="5"
-        app:headerRowBackgroundColor="#ffefefef"
-        app:dayBackgroundColor="#05000000"
-        app:todayBackgroundColor="#1848adff"
-        app:headerColumnBackground="#ffffffff"/>
+        app:headerRowBackgroundColor = "@color/caldroid_white"
+        app:dayBackgroundColor="#f9f9f9"
+        app:todayHeaderTextColor = "#FA8072"
+        app:todayBackgroundColor="#FFFAFA"/>
 
 </RelativeLayout>
