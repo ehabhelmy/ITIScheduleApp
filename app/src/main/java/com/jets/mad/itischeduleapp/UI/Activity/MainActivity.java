@@ -1,5 +1,6 @@
 package com.jets.mad.itischeduleapp.UI.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
@@ -97,11 +98,14 @@ public class MainActivity extends AppCompatActivity
 
         /////NOTIFICATION
         notificationNum = (TextView) findViewById(R.id.notification_number);
+        //TODO: increment this notificaionNum
         notificationBtn = (ImageButton) findViewById(R.id.notification_btn);
         notificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: go to notifications view
+
+                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -40,7 +40,11 @@ public class DataBaseManager extends SQLiteOpenHelper {
         //call your tables here
         EventsTable eventsTable = new EventsTable();
         addTable(eventsTable);
+        addTable(new EventTable());
+        addTable(new SessionTable());
     }
+
+
     public static synchronized DataBaseManager getInstance(){
         if (instance == null){
             instance = new DataBaseManager();

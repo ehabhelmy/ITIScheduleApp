@@ -50,6 +50,13 @@
         </activity>
         <!-- *** End of MainActivity *** -->
 
+        <!-- *** ProfileEdit Activity *** -->
+        <activity android:name=".UI.Activity.ProfileEditActivity" />
+        <!-- *** End of ProfileEdit Activity *** -->
+
+        <!-- *** ProfileEdit Activity *** -->
+        <activity android:name=".UI.Activity.NotificationActivity"></activity>
+        <!-- *** End of ProfileEdit Activity *** -->
 
         <!-- *** TestActivity *** -->
         <activity android:name=".UI.Activity.TestActivity" />
@@ -68,7 +75,6 @@
 
         <!-- === End of Services === -->
 
-        <activity android:name=".UI.Activity.ProfileEditActivity"></activity>
     </application>
 
 </manifest>

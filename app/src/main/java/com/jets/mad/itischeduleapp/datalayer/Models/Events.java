@@ -10,6 +10,8 @@ public class Events extends BaseModel {
     private int color;
     private String description;
     private String register;
+
+
     public static final String REGISTERED = "registered";
     public static final String NOTREGISTERED = "notregistered";
 

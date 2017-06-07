@@ -1,4 +1,4 @@
-package com.jets.mad.itischeduleapp.UI.Adapter;
+package com.jets.mad.itischeduleapp.UI.Adapter.MonthAdapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,9 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jets.mad.itischeduleapp.R;
+import com.jets.mad.itischeduleapp.UI.Adapter.OnDayClickListener;
+import com.jets.mad.itischeduleapp.datalayer.Models.Session;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidGridAdapter;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import hirondelle.date4j.DateTime;
@@ -33,6 +36,8 @@ public class CalendarAdapter extends CaldroidGridAdapter {
      */
 
     private OnDayClickListener onDayClickListener;
+    private ArrayList<Session> sessions;
+    private DateTime dateTime;
 
     public CalendarAdapter(Context context, int month, int year, Map<String, Object> caldroidData, Map<String, Object> extraData, OnDayClickListener onDayClickListener) {
         super(context, month, year, caldroidData, extraData);
@@ -48,21 +53,19 @@ public class CalendarAdapter extends CaldroidGridAdapter {
 
         // For reuse
         if (convertView == null) {
-            cellView = inflater.inflate(R.layout.custom_cell, null);
+            cellView = inflater.inflate(R.layout.cell_month, null);
 
         }
+
+
         int topPadding = cellView.getPaddingTop();
         int leftPadding = cellView.getPaddingLeft();
         int bottomPadding = cellView.getPaddingBottom();
         int rightPadding = cellView.getPaddingRight();
 
-        TextView tv1 = (TextView) cellView.findViewById(R.id.textView2);
-        TextView tv2 = (TextView) cellView.findViewById(R.id.textView3);
-
-        tv1.setTextColor(Color.BLACK);
 
         // Get dateTime of this cell
-        final DateTime dateTime = this.datetimeList.get(position);
+        dateTime = this.datetimeList.get(position);
         Resources resources = context.getResources();
 
         cellView.setOnClickListener(new View.OnClickListener() {
@@ -73,11 +76,15 @@ public class CalendarAdapter extends CaldroidGridAdapter {
             }
         });
 
-        // Set color of the dates in previous / next month
-        if (dateTime.getMonth() != month) {
-            tv1.setTextColor(resources
-                    .getColor(com.caldroid.R.color.caldroid_darker_gray));
-        }
+//        // Set color of the dates in previous / next month
+//        if (dateTime.getMonth() != month) {
+//            tv1.setTextColor(resources
+//                    .getColor(com.caldroid.R.color.caldroid_darker_gray));
+//        }
+
+
+        CalendarHolder calendarHolder = new CalendarHolder(cellView);
+
 
         boolean shouldResetDiabledView = false;
         boolean shouldResetSelectedView = false;
@@ -87,7 +94,10 @@ public class CalendarAdapter extends CaldroidGridAdapter {
                 || (maxDateTime != null && dateTime.gt(maxDateTime))
                 || (disableDates != null && disableDates.indexOf(dateTime) != -1)) {
 
-            tv1.setTextColor(CaldroidFragment.disabledTextColor);
+//            tv1.setTextColor(CaldroidFragment.disabledTextColor);
+
+                calendarHolder.setDisabledFlag(true);
+
             if (CaldroidFragment.disabledBackgroundDrawable == -1) {
                 cellView.setBackgroundResource(com.caldroid.R.drawable.disable_cell);
             } else {
@@ -107,7 +117,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
             cellView.setBackgroundColor(resources
                     .getColor(com.caldroid.R.color.caldroid_sky_blue));
 
-            tv1.setTextColor(Color.BLACK);
+//            tv1.setTextColor(Color.BLACK);
 
         } else {
             shouldResetSelectedView = true;
@@ -122,8 +132,8 @@ public class CalendarAdapter extends CaldroidGridAdapter {
             }
         }
 
-        tv1.setText("" + dateTime.getDay());
-        tv2.setText("Hi");
+        //set Data into view
+        calendarHolder.configure(dateTime.getDay().toString(), sessions);
 
         // Somehow after setBackgroundResource, the padding collapse.
         // This is to recover the padding
@@ -131,7 +141,16 @@ public class CalendarAdapter extends CaldroidGridAdapter {
                 bottomPadding);
 
         // Set custom color if required
-        setCustomResources(dateTime, cellView, tv1);
+//        setCustomResources(dateTime, cellView, tv1);
+
         return cellView;
+    }
+
+    public void setData(ArrayList<Session> sessions){
+        this.sessions = sessions;
+    }
+
+    public DateTime getDateTime(){
+        return dateTime;
     }
 }

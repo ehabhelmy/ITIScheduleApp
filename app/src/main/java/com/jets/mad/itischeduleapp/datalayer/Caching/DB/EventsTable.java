@@ -22,6 +22,8 @@ public class EventsTable extends AbstractTable<Events> {
     public static final String TYPE = "event_type";
     public static final String REGISTERED = "registered";
 
+
+
     @Override
     protected String getTableName() {
         return EVENTTABLE;

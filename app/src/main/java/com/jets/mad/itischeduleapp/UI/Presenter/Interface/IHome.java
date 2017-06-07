@@ -39,4 +39,8 @@ public interface IHome {
     }
 
 
+    interface IHomeModel{
+        public void prepareDataForView();
+    }
+
 }

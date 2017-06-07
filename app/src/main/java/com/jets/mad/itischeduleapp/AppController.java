@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.jets.mad.itischeduleapp.datalayer.Caching.DB.DataBaseManager;
+import com.jets.mad.itischeduleapp.datalayer.Caching.DB.EventTable;
+import com.jets.mad.itischeduleapp.datalayer.Caching.DB.EventsTable;
 
 
 public class AppController extends Application {
@@ -24,6 +26,7 @@ public class AppController extends Application {
         appInstance = this;
         handler = new Handler(Looper.getMainLooper());
         dataBaseManager = DataBaseManager.getInstance();
+        dataBaseManager.addTable(new EventTable());
 
     }
 
