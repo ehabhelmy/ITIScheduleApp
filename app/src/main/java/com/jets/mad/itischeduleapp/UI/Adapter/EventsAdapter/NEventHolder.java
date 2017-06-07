@@ -31,7 +31,7 @@ public class NEventHolder extends BaseViewHolder<Events> implements View.OnClick
     public NEventHolder(View itemView, BaseRecyclerViewAdapter adapter) {
         super(itemView);
         this.adapter = (EventAdapter) adapter;
-        imageView = (ImageView) itemView.findViewById(R.id.nEventImage);
+        imageView = (ImageView) itemView.findViewById(R.id.neventImage);
         name = (TextView) itemView.findViewById(R.id.neventName);
         date = (TextView) itemView.findViewById(R.id.neventDate);
         imageButton = (ImageButton) itemView.findViewById(R.id.nimageButton);
@@ -46,9 +46,10 @@ public class NEventHolder extends BaseViewHolder<Events> implements View.OnClick
     public void onClick(View v) {
         if (v.getId()==imageButton.getId()){
             System.out.println(getAdapterPosition());
+            adapter.getEventFragment().register((Events) adapter.getData().get(getAdapterPosition()));
+            adapter.getEventFragment().sendEventToRegistered((Events) adapter.getData().get(getAdapterPosition()));
             adapter.getData().remove(getAdapterPosition());
             adapter.notifyItemRemoved(getAdapterPosition());
-            adapter.getEventFragment().unregister((Events) adapter.getData().get(getAdapterPosition()));
         }
     }
 }

@@ -81,25 +81,30 @@ public class EventPresenter implements IEvent.IEventPresenter,NetworkCallback {
     }
     @Override
     public void registerEvent(Events events){
+        System.out.println("ana fel register");
         if (NetworkUtils.isConnected()){
             Map<String,String> params = new HashMap<>();
+            params.put("userId","1");
             params.put("eventId",String.valueOf(events.getId()));
-            params.put("flag","register");
-            NetworkHandler.callWebService(URLS.REGISTER_URL, NetworkMethods.GET,params,this);
+            params.put("flag","true");
+            NetworkHandler.callWebService(URLS.REGISTER_URL, NetworkMethods.POST,params,this);
         }
     }
     @Override
     public void  unregisterEvent(Events events){
+        System.out.println("ana fel unregister");
         if (NetworkUtils.isConnected()){
             Map<String,String> params = new HashMap<>();
+            params.put("userId","1");
             params.put("eventId",String.valueOf(events.getId()));
-            params.put("flag","unregister");
-            NetworkHandler.callWebService(URLS.REGISTER_URL, NetworkMethods.GET,params,this);
+            params.put("flag","false");
+            NetworkHandler.callWebService(URLS.REGISTER_URL, NetworkMethods.POST,params,this);
         }
     }
 
     @Override
     public void onSuccess(String response) {
+        System.out.println(response);
         /// response should be json containing the event after updating in the backend
         /// then update database
         /// eventsTable.update(event)
@@ -107,6 +112,7 @@ public class EventPresenter implements IEvent.IEventPresenter,NetworkCallback {
 
     @Override
     public void onError(VolleyError volleyError) {
+        System.out.println(volleyError.getMessage());
         /// show error message ///
     }
 }

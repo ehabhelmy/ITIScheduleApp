@@ -1,5 +1,6 @@
 package com.jets.mad.itischeduleapp.UI.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentsFactory fragmentsFactory;
     private EventPresenter eventPresenter;
     private EventsTable eventsTable;
+    private Intent intent;
 
 
     @Override
@@ -118,6 +120,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                intent = new Intent(MainActivity.this,AddActivity.class);
+                startActivity(intent);
             }
         });
 

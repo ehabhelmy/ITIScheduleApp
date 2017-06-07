@@ -31,7 +31,7 @@ public class EventHolder extends BaseViewHolder<Events> implements View.OnClickL
     public EventHolder(View itemView,BaseRecyclerViewAdapter adapter) {
         super(itemView);
         this .adapter = (EventAdapter) adapter;
-        imageView = (ImageView) itemView.findViewById(R.id.EventImage);
+        imageView = (ImageView) itemView.findViewById(R.id.eventImage);
         name = (TextView) itemView.findViewById(R.id.eventName);
         date = (TextView) itemView.findViewById(R.id.eventDate);
         imageButton = (ImageButton) itemView.findViewById(R.id.imageButton);
@@ -46,9 +46,10 @@ public class EventHolder extends BaseViewHolder<Events> implements View.OnClickL
     public void onClick(View v) {
         if (v.getId()==imageButton.getId()){
             System.out.println(getAdapterPosition());
-//            adapter.getData().remove(getAdapterPosition());
-//            adapter.notifyItemRemoved(getAdapterPosition());
-            adapter.getEventFragment().register((Events) adapter.getData().get(getAdapterPosition()));
+            adapter.getEventFragment().unregister((Events) adapter.getData().get(getAdapterPosition()));
+            adapter.getEventFragment().sendEventToUnregistered((Events) adapter.getData().get(getAdapterPosition()));
+            adapter.getData().remove(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());
         }
     }
 }

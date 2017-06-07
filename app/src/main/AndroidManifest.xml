@@ -69,6 +69,7 @@
         <!-- === End of Services === -->
 
         <activity android:name=".UI.Activity.ProfileEditActivity"></activity>
+        <activity android:name=".UI.Activity.AddActivity"></activity>
     </application>
 
 </manifest>
