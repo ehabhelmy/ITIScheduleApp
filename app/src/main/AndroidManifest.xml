@@ -50,6 +50,10 @@
         </activity>
         <!-- *** End of MainActivity *** -->
 
+        <!-- *** AddEvent Activity *** -->
+        <activity android:name=".UI.Activity.AddActivity"></activity>
+        <!-- *** End of AddEvent Activity *** -->
+
         <!-- *** ProfileEdit Activity *** -->
         <activity android:name=".UI.Activity.ProfileEditActivity" />
         <!-- *** End of ProfileEdit Activity *** -->

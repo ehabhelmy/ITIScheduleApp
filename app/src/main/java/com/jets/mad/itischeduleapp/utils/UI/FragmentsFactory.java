@@ -1,6 +1,5 @@
 package com.jets.mad.itischeduleapp.utils.UI;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -35,7 +34,7 @@ public class FragmentsFactory {
     public void getFragment(HomeFragments homeFragment){
 
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.open_center, R.anim.open_center_exit);
+
 
         //replace fragments according to input
         switch (homeFragment){
@@ -53,19 +52,15 @@ public class FragmentsFactory {
                 if (weekFragment == null){
                     weekFragment = new WeekFragment();
                 }
+                fragmentTransaction.setCustomAnimations(R.anim.weekenter, R.anim.weekexit);
                 fragmentTransaction.replace(R.id.lout,weekFragment,"WEEK");
                 break;
             case MONTH:
                 monthFragment = (MonthFragment) fragmentManager.findFragmentByTag("MONTH");
-
                 if (monthFragment == null){
                     monthFragment = new MonthFragment();
                 }
-
-                Bundle args = new Bundle();
-                args.putInt(MonthFragment.THEME_RESOURCE, R.style.CaldroidDefaultLight);
-                monthFragment.setArguments(args);
-
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit);
                 fragmentTransaction.replace(R.id.lout,monthFragment);
                 break;
             case PROFILE:

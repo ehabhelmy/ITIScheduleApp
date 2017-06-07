@@ -71,4 +71,15 @@ public class EventFragment extends Fragment {
         homeActivity.getEventPresenter().unregisterEvent(events);
     }
 
+    public void sendEventToRegistered(Events events){
+        EventAdapter eventAdapter = (EventAdapter) registeredEvents.getAdapter();
+        eventAdapter.getData().add(events);
+        eventAdapter.notifyItemInserted(eventAdapter.getItemCount()-1);
+    }
+    public void sendEventToUnregistered(Events events){
+        EventAdapter eventAdapter = (EventAdapter) notRegisteredEvents.getAdapter();
+        eventAdapter.getData().add(events);
+        eventAdapter.notifyItemInserted(eventAdapter.getItemCount()-1);
+    }
+
 }

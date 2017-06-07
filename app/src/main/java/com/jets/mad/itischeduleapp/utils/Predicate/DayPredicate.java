@@ -2,8 +2,6 @@ package com.jets.mad.itischeduleapp.utils.Predicate;
 
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import com.jets.mad.itischeduleapp.datalayer.Models.Session;
 import com.jets.mad.itischeduleapp.utils.DateTimeConverter;
 
