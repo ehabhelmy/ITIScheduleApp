@@ -3,13 +3,10 @@ package com.jets.mad.itischeduleapp.datalayer.Managers;
 import android.graphics.Color;
 
 import com.jets.mad.itischeduleapp.UI.Presenter.Interface.ICalendar;
-import com.jets.mad.itischeduleapp.datalayer.Caching.DB.EventTable;
 import com.jets.mad.itischeduleapp.datalayer.Caching.DB.SessionTable;
 import com.jets.mad.itischeduleapp.datalayer.Models.Session;
-import com.jets.mad.itischeduleapp.utils.DateTimeConverter;
 
 import java.util.ArrayList;
-import java.util.SimpleTimeZone;
 
 import hirondelle.date4j.DateTime;
 

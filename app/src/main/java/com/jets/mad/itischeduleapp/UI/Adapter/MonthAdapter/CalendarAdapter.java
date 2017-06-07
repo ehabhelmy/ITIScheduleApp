@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.collect.Collections2;
 import com.jets.mad.itischeduleapp.R;
 import com.jets.mad.itischeduleapp.UI.Adapter.OnDayClickListener;
 import com.jets.mad.itischeduleapp.datalayer.Models.Session;
+import com.jets.mad.itischeduleapp.utils.Predicate.DayPredicate;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidGridAdapter;
 
@@ -96,7 +98,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
 
 //            tv1.setTextColor(CaldroidFragment.disabledTextColor);
 
-                calendarHolder.setDisabledFlag(true);
+            calendarHolder.setDisabledFlag(true);
 
             if (CaldroidFragment.disabledBackgroundDrawable == -1) {
                 cellView.setBackgroundResource(com.caldroid.R.drawable.disable_cell);
@@ -133,6 +135,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
         }
 
         //set Data into view
+//        ArrayList<Session> filteredSessions = (ArrayList<Session>) Collections2.filter(sessions, new DayPredicate(dateTime));
         calendarHolder.configure(dateTime.getDay().toString(), sessions);
 
         // Somehow after setBackgroundResource, the padding collapse.

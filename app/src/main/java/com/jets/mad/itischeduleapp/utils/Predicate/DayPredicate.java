@@ -1,24 +1,22 @@
 package com.jets.mad.itischeduleapp.utils.Predicate;
 
-import android.annotation.TargetApi;
-import android.os.Build;
+import com.google.common.base.Predicate;
 import com.jets.mad.itischeduleapp.datalayer.Models.Session;
 import com.jets.mad.itischeduleapp.utils.DateTimeConverter;
 
+import hirondelle.date4j.DateTime;
 
+public class DayPredicate implements Predicate<Session> {
 
-/**
- * Created by lenovo on 6/7/2017.
- */
+    private DateTime dateTime;
 
-public class DayPredicate {}
-//        implements Predicate<Session> {
-//
-//    @Override
-//    public boolean test(Session session) {
-//
-//        return (DateTimeConverter.millisecondsToDay(session.getStartDate()));
-//    }
-//
-//
-//}
+    public DayPredicate(DateTime dateTime){
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public boolean apply(Session input) {
+        return DateTimeConverter.millisecondsToDay(input.getStartDate()) == dateTime.getDay()
+                &&  DateTimeConverter.millisecondsToMonth(input.getStartDate()) == dateTime.getMonth();
+    }
+}
