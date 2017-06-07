@@ -16,9 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="#00BCD4"
+        app:backgroundTint="#00BCD4"
         android:tint="@color/caldroid_white"
-        app:backgroundTint="@color/caldroid_transparent"
         app:srcCompat="@mipmap/ic_add_black_24dp" />
 
     <android.support.design.widget.AppBarLayout
